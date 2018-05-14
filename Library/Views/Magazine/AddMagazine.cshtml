@@ -1,0 +1,25 @@
+﻿@model Library.Entities.Models.Magazine
+
+@{
+    ViewBag.Title = "AddMagazine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddMagazine</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name, "Name")
+    <br />
+    @Html.EditorFor(model => model.Name)
+    <br /><br />
+    @Html.LabelFor(model => model.Number, "Number")
+    <br />
+    @Html.EditorFor(model => model.Number)
+    <br /><br />
+    @Html.LabelFor(model => model.YearOfPublishing, "Year of publishing")
+    <br />
+    @Html.EditorFor(model => model.YearOfPublishing)
+    <br /><br />
+    <input type="submit" value="Add magazine" />
+}

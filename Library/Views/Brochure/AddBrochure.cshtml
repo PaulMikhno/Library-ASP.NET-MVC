@@ -1,0 +1,29 @@
+﻿@model Library.Entities.Models.Brochure
+@{
+    ViewBag.Title = "Add brochure";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddBrochure</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name, "Name")
+    <br />
+    @Html.EditorFor(model => model.Name)
+
+    <br /><br />
+    @Html.LabelFor(model => model.TypeOfCover, "Type")
+    <br />
+    @Html.EditorFor(model => model.TypeOfCover)
+
+    <br /><br />
+
+    @Html.LabelFor(model => model.NumberOfPages, "Number Of pages")
+    <br />
+    <input type="number"  name="NumberOfPages" class="form-control" autocomplete="on" min="1" >
+    
+    <br /><br />
+
+    <input type="submit" value="Add brochure" />
+}

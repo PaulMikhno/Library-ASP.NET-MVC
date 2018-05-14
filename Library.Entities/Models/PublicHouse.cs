@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Text;
+
+
+namespace Library.Entities.Models
+{
+    [DataContract]
+    public class PublicHouse
+   {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public string Name { get; set; }
+        [DataMember]
+        public string Address { get; set; }
+
+        [IgnoreDataMember]
+        public ICollection<Book> Books { get; set; }
+
+        
+        public PublicHouse()
+        {
+            Books = new List<Book>();
+        }
+
+    }
+}
