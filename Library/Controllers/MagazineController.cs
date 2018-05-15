@@ -10,7 +10,6 @@ using Library.Entities.Interfaces;
 using Library.Entities.Models;
 using Library.BLL;
 using Library.BLL.Interfaces;
-using Library.DAL;
 using Library.BLL.Servises;
 using System.Configuration;
 
@@ -20,9 +19,6 @@ namespace Library.WEB.Controllers
     {
 
         MagazineService magazineService;
-        
-        private LibraryContext libraryContext = new LibraryContext();
-
         public MagazineController()
         {
             magazineService = new MagazineService(ConfigurationManager.ConnectionStrings["LibraryContext"].ConnectionString);

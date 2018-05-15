@@ -10,7 +10,6 @@ using Library.Entities.Interfaces;
 using Library.Entities.Models;
 using Library.BLL.Servises;
 using Library.BLL.Interfaces;
-using Library.DAL;
 using System.Configuration;
 
 namespace Library.WEB.Controllers
@@ -19,7 +18,7 @@ namespace Library.WEB.Controllers
     {
         PublicationHouseService publicHouseService;
       
-       // LibraryContext libraryContext = new LibraryContext();
+       
 
         public PublicHouseController()
         {

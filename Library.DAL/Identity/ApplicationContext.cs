@@ -3,16 +3,14 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Library.Entities.Models;
-namespace Library.DAL
+using Library.DAL.Entities;
+
+namespace Library.DAL.Identity
 {
     public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationContext() : base("LibraryContext") { }
+        public ApplicationContext(string conectionString) : base(conectionString) { }
 
-        public static ApplicationContext Create()
-        {
-            return new ApplicationContext();
-        }
+        public DbSet<ClientProfile> ClientProfiles { get; set; }
     }
 }

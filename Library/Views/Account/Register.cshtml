@@ -1,50 +1,49 @@
-﻿@model Library.Entities.Models.RegisterModel
+﻿@model Library.WEB.Models.RegisterModel
 
 @{
     ViewBag.Title = "Register";
 }
 
-<h2>Регистрация</h2>
-
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-
-    <div>
-        <h4>Регистрация пользователя</h4>
-        <hr />
-        @Html.ValidationSummary(false)
-
-        <div>
-            Электронный адрес
-            <div>
-                @Html.EditorFor(model => model.Email)
-            </div>
+    <h4>Create a new account.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
         </div>
-
-        <div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
         </div>
-
-        <div>
-            Пароль
-            <div>
-
-                @Html.EditorFor(model => model.Password)
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
-
-        <div>
-            Подтвердить пароль
-            <div>
-                @Html.EditorFor(model => model.PasswordConfirm)
-            </div>
-        </div>
-
-        <div>
-            <div>
-                <input type="submit" value="Зарегистрировать" />
-            </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </div>
     </div>
 }
+@*<div class="container">
+
+    <form class="form-signin">
+        <h2 class="form-signin-heading">Register</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <label for="confirmPassword" class="sr-only">Confirm password</label>
+        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required>*@
+
+
+@**@

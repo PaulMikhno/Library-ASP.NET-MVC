@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Entities.Models
+namespace Library.DAL.Entities
 {
     public class ApplicationUser : IdentityUser
     {
-        public ApplicationUser()
+        public virtual ClientProfile ClientProfile { get; set; }
+        public ApplicationUser():base()
         {
         }
     }

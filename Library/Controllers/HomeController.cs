@@ -10,7 +10,6 @@ using Library.Entities.Interfaces;
 using Library.Entities.Models;
 using Library.BLL.Servises;
 using Library.BLL.Interfaces;
-using Library.DAL;
 using System.Data.Entity;
 using System.Configuration;
 
@@ -18,8 +17,7 @@ namespace Library.WEB.Controllers
 {
     public class HomeController : Controller
     {
-        
-        LibraryContext libraryContext = new LibraryContext();
+
         MagazineService magazineService;
         BrochureService brochureService;
         BookServise bookServise;

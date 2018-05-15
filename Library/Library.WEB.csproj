@@ -174,9 +174,8 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\BrochureController.cs" />
@@ -186,6 +185,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -257,6 +258,7 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -275,17 +277,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Desktop\Library.WEB - Copy\Library.BLL\Library.BLL.csproj">
+    <ProjectReference Include="..\Library.BLL\Library.BLL.csproj">
       <Project>{98ff367a-96d5-463d-b0c4-0e001d54e1b4}</Project>
       <Name>Library.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Desktop\Library.WEB - Copy\Library.Entities\Library.Entities.csproj">
+    <ProjectReference Include="..\Library.Entities\Library.Entities.csproj">
       <Project>{ed060aa7-7c1c-4c80-abfa-5fed56194f00}</Project>
       <Name>Library.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Library.DAL\Library.DAL.csproj">
-      <Project>{920f770c-459d-44c5-b413-c1e96c336418}</Project>
-      <Name>Library.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

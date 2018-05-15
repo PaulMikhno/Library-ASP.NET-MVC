@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using Library.Entities.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 public class LibraryContext : DbContext
 {
