@@ -43,7 +43,7 @@ namespace Library.WEB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginModel model)
         {
-            //await SetInitialDataAsync();
+           // await SetInitialDataAsync();
             if (ModelState.IsValid)
             {
                 UserDTO userDto = new UserDTO { Email = model.Email, Password = model.Password };
@@ -80,7 +80,7 @@ namespace Library.WEB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterModel model)
         {
-          //  await SetInitialDataAsync();
+           // await SetInitialDataAsync();
             if (ModelState.IsValid)
             {
                 UserDTO userDto = new UserDTO
@@ -91,7 +91,7 @@ namespace Library.WEB.Controllers
                 };
                 OperationDetails operationDetails = await UserService.Create(userDto);
                 if (operationDetails.Succedeed)
-                    return View("SuccessRegister");
+                    return View("Login");
                 else
                     ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
             }
@@ -101,11 +101,11 @@ namespace Library.WEB.Controllers
         {
             await UserService.SetInitialData(new UserDTO
             {
-                Email = "email@mail.ru",
-                UserName = "email@mail.ru",
-                Password = "qwerty3",
-                Name = "Семен Семенович Горбунков",
-                Address = "ул. Спортивная, д.30, кв.75",
+                Email = "admin@gmail.com",
+                UserName = "admin@gmail.com",
+                Password = "admin",
+                Name = "Paul",
+                Address = "Sunny St.",
                 Role = "admin",
             }, new List<string> { "user", "admin" });
         }

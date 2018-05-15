@@ -33,6 +33,7 @@ namespace Library.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult AddBook()
         {
 
@@ -78,23 +79,29 @@ namespace Library.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditBook(Book book)
+        public ActionResult EditBook(Book book, List<int> selectedPablicHouses)
         {
-            //Book bookToUpdate = bookServise.Get(book.Id);
-            // Book book = bookServise.Get(id);
+            List<PublicHouse> publicHouses = new List<PublicHouse>();
 
             if (book.Name == null)
             {
                 return HttpNotFound();
             }
 
-            //bookToUpdate.Name = book.Name;
-            //bookToUpdate.Author = book.Author;
-            //bookToUpdate.YearOfPublishing = book.YearOfPublishing;
+            if (selectedPablicHouses != null)
+            {
+                Book bookToUpdate = _bookServise.Get(book.Id);
 
+                bookToUpdate.PublicHouses.Clear();
+
+                var publicHousesToUpdate = _bookServise.GetPublicHouses().Where(x => selectedPablicHouses.Contains(x.Id)).ToList();
+
+                bookToUpdate.PublicHouses.AddRange(publicHousesToUpdate);
+
+                return Json(book);
+            }
             _bookServise.Update(book);
-
-             return Json(book);
+            return Json(book);
         }
 
        
@@ -117,36 +124,7 @@ namespace Library.WEB.Controllers
            , JsonRequestBehavior.AllowGet
            );
         }
-        //[HttpPost]
-        //public ActionResult EditBook(Book book, List<int> selectedPablicHouses)
-        //{
-        //    List<PublicHouse> publicHouses = new List<PublicHouse>();
-
-
-        //    if (book == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    if (selectedPablicHouses != null)
-        //    {
-        //        Book bookToUpdate = bookServise.Get(book.Id);
-
-        //        bookToUpdate.PublicHouses.Clear();
-
-        //        var publicHousesToUpdate = bookServise.GetPublicHouses().Where(x => selectedPablicHouses.Contains(x.Id)).ToList();
-
-        //        bookToUpdate.PublicHouses.AddRange(publicHousesToUpdate);
-        //        bookToUpdate.Name = book.Name;
-        //        bookToUpdate.Author = book.Author;
-        //        bookToUpdate.YearOfPublishing = book.YearOfPublishing;
-
-
-        //        bookServise.Update(bookToUpdate);
-        //    }
-
-        //    return RedirectToAction("Books");
-        //}
+      
 
     }
 }

@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Web;
+
+namespace Library.Models
+{
+    [DataContract]
+    public class BookViewModel
+    { 
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public string Name { get; set; }
+        [DataMember]
+        public string Author { get; set; }
+
+        [DataMember]
+        public string YearOfPublishing { get; set; }
+
+        public virtual List<PublicHouseViewModel> PublicHouses { get; set; }
+
+        public BookViewModel()
+        {
+            PublicHouses = new List<PublicHouseViewModel>();
+        }
+
+    }
+}
