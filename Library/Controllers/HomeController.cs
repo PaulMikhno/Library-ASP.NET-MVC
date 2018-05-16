@@ -18,30 +18,16 @@ namespace Library.WEB.Controllers
     public class HomeController : Controller
     {
 
-        MagazineService magazineService;
-        BrochureService brochureService;
-        BookServise bookServise;
-
         public HomeController()
-        {
-            this.bookServise = new BookServise(ConfigurationManager.ConnectionStrings["LibraryContext"].ConnectionString);
-            this.magazineService=new MagazineService(ConfigurationManager.ConnectionStrings["LibraryContext"].ConnectionString);
-            this.brochureService=new BrochureService(ConfigurationManager.ConnectionStrings["LibraryContext"].ConnectionString);
-    }
+        { 
+        }
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult AllPublications()
-        {
-
-            ViewData["Books"] = bookServise.Get();
-            ViewData["Magazines"] = magazineService.Get();
-            ViewData["Brochures"] = brochureService.Get();
-            return View();
-        }
+       
 
     }
 

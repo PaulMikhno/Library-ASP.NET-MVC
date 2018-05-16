@@ -29,11 +29,26 @@ namespace Library.Controllers
         {
             return View();
         }
-
-        public JsonResult Getbooks(string text)
+        [Authorize(Roles = "admin")]
+        public ActionResult Magazines()
         {
-            var books = _bookServise.Get();
-            return this.Json(books, JsonRequestBehavior.AllowGet);
+            return View();
         }
+        [Authorize(Roles = "admin")]
+        public ActionResult Brochures()
+        {
+            return View();
+        }
+        [Authorize(Roles = "admin")]
+        public ActionResult PublicHouses()
+        {
+            return View();
+        }
+        //public JsonResult Getbooks(string text)
+        //{
+        //    var books = _bookServise.Get();
+        //    return this.Json(books, JsonRequestBehavior.AllowGet);
+        //}
+
     }
 }

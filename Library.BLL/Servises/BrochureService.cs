@@ -1,8 +1,10 @@
-﻿using Library.DAL;
+﻿using AutoMapper;
+using Library.DAL;
 using Library.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ViewEntities.Models;
 
 namespace Library.BLL.Servises
 {
@@ -18,14 +20,21 @@ namespace Library.BLL.Servises
             this._brochureRepository = new GenericRepository<Brochure>(_libraryContext);
         }
 
-        public IEnumerable<Brochure> Get()
+        public IEnumerable<BrochureViewModel> Get()
         {
-            return _brochureRepository.Get();
+            IEnumerable<Brochure> brochur = _brochureRepository.Get();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Brochure, BrochureViewModel>()).CreateMapper();
+            var brochures = mapper.Map<IEnumerable<Brochure>, List<BrochureViewModel>>(brochur);
+
+            return brochures;
         }
 
-        public Brochure Get(int id)
+        public BrochureViewModel Get(int id)
         {
-            return _brochureRepository.Get(id);
+            Brochure brochur = _brochureRepository.Get(id);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Brochure, BrochureViewModel>()).CreateMapper();
+            var brochure = mapper.Map<Brochure, BrochureViewModel>(brochur);
+            return brochure;
         }
 
         public void Remove(int id)
@@ -33,14 +42,18 @@ namespace Library.BLL.Servises
             _brochureRepository.Remove(id);
         }
 
-        public void Update(Brochure book)
+        public void Update(BrochureViewModel book)
         {
-            _brochureRepository.Update(book);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BrochureViewModel, Brochure>()).CreateMapper();
+            var brochur = mapper.Map<BrochureViewModel, Brochure>(book);
+            _brochureRepository.Update(brochur);
         }
-        public void Create(Brochure book)
+        public void Create(BrochureViewModel book)
         {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BrochureViewModel, Brochure>()).CreateMapper();
+            var brochur = mapper.Map<BrochureViewModel, Brochure>(book);
 
-            _brochureRepository.Create(book);
+            _brochureRepository.Create(brochur);
 
         }
     }

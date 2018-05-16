@@ -131,21 +131,20 @@
                         })
 
 
-                $("#grid").kendoGrid
-                ({
-                    dataSource: dataSource,
+        $("#grid").kendoGrid
+            ({
+                dataSource: dataSource,
 
-                    pageable: true,
-                    height: 550,
-                    toolbar: ["create"],
-                    columns: [
-                        { field: "Name", title: "Book name" },
-                        { field: "Author", title: "Author" },
-                        { field: "YearOfPublishing", title: "YearOfPublishing"},
+                pageable: true,
+                height: 550,
+                columns: [
+                    { field: "Name", title: "Book name" },
+                    { field: "Author", title: "Author" },
+                    { field: "YearOfPublishing", title: "YearOfPublishing" }]
                        // { field: "PublicHouses", title: "Publishing by" },
 
-                        { command: ["edit", "destroy"], title: "&nbsp;" }],
-                        editable: "popup"
+                       // { command: ["edit", "destroy"], title: "&nbsp;" }],
+                        //editable: "popup"
                 })
 
         function selector(container, options) {
@@ -166,8 +165,7 @@
     });
 
         </script>
-         
-        <p><a class="btn btn-primary" href="/Book/AddBook" role="button">Add Book</a></p>
+
     </div>
 </body>
 </html>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
 
-namespace Library.Models
+namespace ViewEntities.Models
 {
     [DataContract]
     public class PublicHouseViewModel

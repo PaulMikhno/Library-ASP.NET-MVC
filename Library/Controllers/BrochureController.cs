@@ -6,11 +6,12 @@ using System.Web.Mvc;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
-using Library.Entities.Interfaces;
-using Library.Entities.Models;
 using Library.BLL.Servises;
 using Library.BLL.Interfaces;
 using System.Configuration;
+using AutoMapper;
+using Library.WEB.Models;
+using ViewEntities.Models;
 
 namespace Library.WEB.Controllers
 {
@@ -27,28 +28,29 @@ namespace Library.WEB.Controllers
 
         public ActionResult Brochures()
         {
-
+            
             return View(brochureService.Get());
+           
         }
-        
+       
         [HttpPost]
-        public ActionResult AddBrochure(Brochure brochure)
+        public ActionResult AddBrochure(BrochureViewModel brochure)
         {
             brochureService.Create(brochure);
 
             return Json(brochure);
 
         }
-     
-        
+  
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            Brochure b = brochureService.Get(id);
+            BrochureViewModel b = brochureService.Get(id);
             if (b == null)
             {
                 return HttpNotFound();
             }
+
             brochureService.Remove(id);
 
             return RedirectToAction("Brochures");
@@ -82,7 +84,7 @@ namespace Library.WEB.Controllers
 
        
         [HttpPost]
-        public ActionResult EditBrochure(Brochure brochure)
+        public ActionResult EditBrochure(BrochureViewModel brochure)
         {
 
             if (brochure == null)
@@ -92,10 +94,11 @@ namespace Library.WEB.Controllers
             brochureService.Update(brochure);
             return Json(brochure);
         }
-
+        
         public JsonResult GetBrochures(string text)
         {
             var brochures = brochureService.Get();
+            
             return this.Json(brochures, JsonRequestBehavior.AllowGet);
         }
     }

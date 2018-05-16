@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -45,6 +48,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,6 +79,10 @@
     <ProjectReference Include="..\Library.Entities\Library.Entities.csproj">
       <Project>{ed060aa7-7c1c-4c80-abfa-5fed56194f00}</Project>
       <Name>Library.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewEntities\ViewEntities.csproj">
+      <Project>{a9b0a3dd-b95a-4840-8ba2-b8bf57d92332}</Project>
+      <Name>ViewEntities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

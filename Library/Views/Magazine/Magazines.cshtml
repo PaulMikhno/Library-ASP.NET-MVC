@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Library.Entities.Models.Magazine>
+﻿@model IEnumerable<ViewEntities.Models.MagazineViewModel>
 
 @{
     ViewBag.Title = "Magazines";
@@ -8,18 +8,17 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link type="text/css" rel="stylesheet" href="../../Content/Table.css" />
+    @Styles.Render("~/Content/css")
     <link href="~/styles/kendo.common.min.css" rel="stylesheet" />
     <link href="~/styles/kendo.default.min.css" rel="stylesheet" />
     <link href="~/styles/kendo.default.mobile.min.css" rel="stylesheet" />
     <script src="~/js/jquery.min.js"></script>
     <script src="~/js/kendo.all.min.js"></script>
-    @Styles.Render("~/Content/css")
     <title>Library</title>
 </head>
 <body>
     <div>
-
+        <h3>Magazines</h3>
         <div id="grid"></div>
 
         <script>
@@ -145,19 +144,19 @@
 
                     pageable: true,
                     height: 550,
-                    toolbar: ["create"],
+                   // toolbar: ["create"],
                     columns: [
                         { field: "Name", title: "Magazine name" },
                         { field: "Number", title: "Number" },
-                        { field: "YearOfPublishing", },
-                        { command: ["edit", "destroy"], title: "&nbsp;" }],
-                        editable: "popup"
+                        { field: "YearOfPublishing", }]
+                       // { command: ["edit", "destroy"], title: "&nbsp;" }],
+                       // editable: "popup"
                 })
             });
 
         </script>
 
-        <p><a class="btn btn-primary" href="/Magazine/AddMagazine" role="button">Add Magazine</a></p>
+
     </div>
 </body>
 </html>

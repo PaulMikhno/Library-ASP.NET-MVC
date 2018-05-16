@@ -7,11 +7,12 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using Library.Entities.Interfaces;
-using Library.Entities.Models;
+//using Library.Entities.Models;
 using Library.BLL;
 using Library.BLL.Interfaces;
 using Library.BLL.Servises;
 using System.Configuration;
+using ViewEntities.Models;
 
 namespace Library.WEB.Controllers
 {
@@ -30,27 +31,20 @@ namespace Library.WEB.Controllers
 
             return View(magazineService.Get());
         }
-
-        [HttpGet]
-        public ActionResult AddMagazine()
-        {
-
-            return View();
-        }
-
-
+       
         [HttpPost]
-        public ActionResult AddMagazine(Magazine magazine)
+        public ActionResult AddMagazine(MagazineViewModel magazine)
         {
             magazineService.Create(magazine);
             
-            return Json(magazine);
+            return Json(magazine, JsonRequestBehavior.AllowGet);
 
         }
+       
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            Magazine b = magazineService.Get(id);
+            MagazineViewModel b = magazineService.Get(id);
             if (b == null)
             {
                 return HttpNotFound();
@@ -59,9 +53,9 @@ namespace Library.WEB.Controllers
 
             return RedirectToAction("Magazines");
         }
-        
+       
         [HttpPost]
-        public ActionResult EditMagazine(Magazine magazine)
+        public ActionResult EditMagazine(MagazineViewModel magazine)
         {
 
             if (magazine == null)
@@ -71,7 +65,7 @@ namespace Library.WEB.Controllers
             magazineService.Update(magazine);
             return Json(magazine);
         }
-
+        
         public JsonResult GetMagazines(string text)
         {
             var magazines = magazineService.Get();

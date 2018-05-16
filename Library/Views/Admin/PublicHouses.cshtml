@@ -1,32 +1,26 @@
-﻿@model IEnumerable <ViewEntities.Models.BrochureViewModel>
+﻿@model  IEnumerable<ViewEntities.Models.PublicHouseViewModel>
 
 @{
-    ViewBag.Title = "Brochures";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "PublicHouses";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    @Styles.Render("~/Content/css")
-    <link type="text/css" rel="stylesheet" href="../../Content/Table.css" />
-    <link type="text/css" rel="stylesheet" href="../../Content/Table.css" />
     <link href="~/styles/kendo.common.min.css" rel="stylesheet" />
     <link href="~/styles/kendo.default.min.css" rel="stylesheet" />
     <link href="~/styles/kendo.default.mobile.min.css" rel="stylesheet" />
     <script src="~/js/jquery.min.js"></script>
     <script src="~/js/kendo.all.min.js"></script>
-
-
-    <title>Library</title>
 </head>
 <body>
-    <h3>Brochures</h3>
-    <div id="grid"></div>
+    <div>
+        <h3>PublicHouses</h3>
 
-    <script>
+        <div id="grid"></div>
+
+        <script>
 
             $(document).ready(function ()
             {
@@ -38,7 +32,7 @@
                                     {
                                         $.ajax(
                                             {
-                                                url: "@Url.Action("GetBrochures", "Brochure")",
+                                                url: "@Url.Action("GetPublicationHouses", "PublicHouse")",
                                                 dataType: "Json",
                                                 success: function (result)
                                                 {
@@ -55,12 +49,12 @@
 
                                         $.ajax(
                                             {
-                                                url: "/Brochure/EditBrochure",
+                                                url:  "@Url.Action("EditPublicHouse", "PublicHouse")",
                                                 dataType: "json",
                                                 type:"POST",
                                                 data:
                                                     {
-                                                        Brochure: options.data.models[0]
+                                                        PublicHouse: options.data.models[0]
                                                     },
                                                  success: function (result)
                                                  {
@@ -77,7 +71,7 @@
                                     {
                                         $.ajax(
                                             {
-                                                url: "/Brochure/Delete/" + options.data.models[0].Id,
+                                                url: "/PublicHouse/Delete/" + options.data.models[0].Id,
                                                 success: function (result)
                                                 {
                                                     options.success(result);
@@ -88,16 +82,17 @@
                                                 }
                                             });
                                     },
-                                    create: function (options)
-                                    {
+                                   create: function (options)
+                                   {
+
                                         $.ajax(
                                             {
-                                                url: "/Brochure/AddBrochure",
+                                                url: "/PublicHouse/AddPublicHouse",
                                                 dataType: "json",
                                                 type: "POST",
                                                 data:
                                                     {
-                                                        Brochure: options.data.models[0]
+                                                        PublicHouse: options.data.models[0]
                                                     },
                                                 success: function (result) {
                                                     options.success(result);
@@ -121,7 +116,9 @@
                                         if (operation !== "update" && options.models) {
                                             return { models: kendo.stringify(options.models) };
                                         }
-
+                                        if (operation !== "create" && options.models) {
+                                            return { models: kendo.stringify(options.models) };
+                                        }
                                     }
                                 },
                             batch: true,
@@ -135,8 +132,8 @@
                                                 {
                                                     Id: { type: "number", editable: false },
                                                     Name: { validation: { required: true } },
-                                                    TypeOfCover: { validation: { required: true } },
-                                                    NumberOfPages: { type: "number", validation: { required: true } },
+                                                    Address: { validation: { required: true } },
+
                                                 }
                                         }
                                 }
@@ -149,17 +146,19 @@
 
                     pageable: true,
                     height: 550,
-                    //toolbar: ["create"],
+                    toolbar: ["create"],
                     columns: [
-                        { field: "Name", title: "Brochure name" },
-                        { field: "TypeOfCover", title: "TypeOfCover" },
-                        { field: "NumberOfPages", title: "NumberOfPages"  }]
-                        //{ command: ["edit", "destroy"], title: "&nbsp;" }],
-                        //editable: "popup"
+                        { field: "Name", title: "Name"},
+                        { field: "Address", title: "Address" },
+                        { command: ["edit", "destroy"], title: "&nbsp;" }],
+                        editable: "popup"
                 })
             });
 
-    </script>
+        </script>
 
+
+       
+    </div>
 </body>
 </html>
