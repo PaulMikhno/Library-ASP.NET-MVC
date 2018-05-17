@@ -23,8 +23,8 @@ namespace Library.BLL.Servises
         public IEnumerable<BrochureViewModel> Get()
         {
             IEnumerable<Brochure> brochur = _brochureRepository.Get();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Brochure, BrochureViewModel>()).CreateMapper();
-            var brochures = mapper.Map<IEnumerable<Brochure>, List<BrochureViewModel>>(brochur);
+            
+            var brochures = Mapper.Map<IEnumerable<Brochure>, List<BrochureViewModel>>(brochur);
 
             return brochures;
         }
@@ -32,8 +32,8 @@ namespace Library.BLL.Servises
         public BrochureViewModel Get(int id)
         {
             Brochure brochur = _brochureRepository.Get(id);
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Brochure, BrochureViewModel>()).CreateMapper();
-            var brochure = mapper.Map<Brochure, BrochureViewModel>(brochur);
+          
+            var brochure = Mapper.Map<Brochure, BrochureViewModel>(brochur);
             return brochure;
         }
 
@@ -44,14 +44,12 @@ namespace Library.BLL.Servises
 
         public void Update(BrochureViewModel book)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BrochureViewModel, Brochure>()).CreateMapper();
-            var brochur = mapper.Map<BrochureViewModel, Brochure>(book);
+            var brochur = Mapper.Map<BrochureViewModel, Brochure>(book);
             _brochureRepository.Update(brochur);
         }
         public void Create(BrochureViewModel book)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BrochureViewModel, Brochure>()).CreateMapper();
-            var brochur = mapper.Map<BrochureViewModel, Brochure>(book);
+            var brochur = Mapper.Map<BrochureViewModel, Brochure>(book);
 
             _brochureRepository.Create(brochur);
 

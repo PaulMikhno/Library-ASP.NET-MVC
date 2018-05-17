@@ -15,6 +15,7 @@ using ViewEntities.Models;
 
 namespace Library.WEB.Controllers
 {
+    [Authorize]
     public class BrochureController : Controller
     {
 
@@ -32,16 +33,17 @@ namespace Library.WEB.Controllers
             return View(brochureService.Get());
            
         }
-       
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult AddBrochure(BrochureViewModel brochure)
         {
             brochureService.Create(brochure);
+           
 
-            return Json(brochure);
+            return Json(brochure, JsonRequestBehavior.AllowGet);
 
         }
-  
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -55,34 +57,8 @@ namespace Library.WEB.Controllers
 
             return RedirectToAction("Brochures");
         }
-
-        //[HttpGet]
-        //public ActionResult Download(int id)
-        //{
-        //    Brochure b = brochureService.Get(id);
-        //    if (b == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(b);
-        //}
-
-
-        //[HttpPost, ActionName("Download")]
-        //public ActionResult DownloadConfirmed(int id)
-        //{
-        //    Brochure b = brochureService.Get(id);
-        //    if (b == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    logic.Download(b);
-        //    return RedirectToAction("Brochures");
-        //}
-
-
-       
+        
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult EditBrochure(BrochureViewModel brochure)
         {

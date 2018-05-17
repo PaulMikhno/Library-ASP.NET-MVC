@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Library.Entities.Models;
 using Microsoft.Owin.Security;
 using System.Security.Claims;
 using Library.BLL.Interfaces;
@@ -59,7 +58,7 @@ namespace Library.WEB.Controllers
                     {
                         IsPersistent = true
                     }, claim);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Books", "Book");
                 }
             }
             return View(model);

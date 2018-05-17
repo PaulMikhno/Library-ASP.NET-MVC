@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "_AdminLoyaut";
 }
@@ -21,14 +21,17 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/Home/Index">ADMIN</a>
+
             </div>
 
             <div class="navbar-collapse collapse" id="navbar">
                 <ul class="nav navbar-nav navbar-right">
+
                     <li><a href="#">Dashboard</a></li>
+                    <li> <a href="/Account/Login">Log off </a></li>
                     <li><a href="#">Settings</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Help</a></li>
+
+
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input class="form-control" type="text" placeholder="Search...">
@@ -44,26 +47,25 @@
 
                 <ul class="nav nav-sidebar">
 
-                    <li class="active"><a href="/Admin/Index">Books <span class="sr-only">(current)</span></a></li>
-                    <li><a href="/Admin/Magazines">Magazines</a></li>
-                    <li><a href="/Admin/Brochures">Brochures</a></li>
-                    <li><a href="/Admin/PublicHouses">Public Houses</a></li>
+                    <li class="active"><a href="/Book/Books">Books <span class="sr-only">(current)</span></a></li>
+                    <li><a href="/Magazine/Magazines">Magazines</a></li>
+                    <li><a href="/Brochure/Brochures">Brochures</a></li>
+                    <li><a href="/PublicHouse/PublicHouses">Public Houses</a></li>
+
                 </ul>
 
-                </div>
             </div>
         </div>
+    </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">Admin editor</h1>
 
         @RenderBody()
 
     </div>
-    
 
-  
 </body>
 </html>
 
 
-    
+

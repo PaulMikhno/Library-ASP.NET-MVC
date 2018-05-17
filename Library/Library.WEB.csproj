@@ -286,7 +286,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\BrochureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -374,10 +373,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\Magazines.cshtml" />
-    <Content Include="Views\Admin\Brochures.cshtml" />
-    <Content Include="Views\Admin\PublicHouses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -399,10 +394,6 @@
     <ProjectReference Include="..\Library.BLL\Library.BLL.csproj">
       <Project>{98ff367a-96d5-463d-b0c4-0e001d54e1b4}</Project>
       <Name>Library.BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Library.Entities\Library.Entities.csproj">
-      <Project>{ed060aa7-7c1c-4c80-abfa-5fed56194f00}</Project>
-      <Name>Library.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewEntities\ViewEntities.csproj">
       <Project>{a9b0a3dd-b95a-4840-8ba2-b8bf57d92332}</Project>

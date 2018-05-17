@@ -23,8 +23,7 @@ namespace Library.BLL.Servises
         public IEnumerable<PublicHouseViewModel> Get()
         {
             IEnumerable<PublicHouse> pH = _publicHouseRepository.Get();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PublicHouse, PublicHouseViewModel>()).CreateMapper();
-            var pHouses = mapper.Map<IEnumerable<PublicHouse>, List<PublicHouseViewModel>>(pH);
+            var pHouses = Mapper.Map<IEnumerable<PublicHouse>, List<PublicHouseViewModel>>(pH);
 
             return pHouses;
 
@@ -33,8 +32,8 @@ namespace Library.BLL.Servises
         public PublicHouseViewModel Get(int id)
         {
             PublicHouse pH = _publicHouseRepository.Get(id);
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PublicHouse, PublicHouseViewModel>()).CreateMapper();
-            var PHouse = mapper.Map<PublicHouse, PublicHouseViewModel>(pH);
+           
+            var PHouse = Mapper.Map<PublicHouse, PublicHouseViewModel>(pH);
             return PHouse;
         }
 
@@ -46,16 +45,15 @@ namespace Library.BLL.Servises
         public void Update(PublicHouseViewModel book)
         {
 
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PublicHouseViewModel, PublicHouse>()).CreateMapper();
-            var PHose = mapper.Map<PublicHouseViewModel, PublicHouse>(book);
+        
+            var PHose = Mapper.Map<PublicHouseViewModel, PublicHouse>(book);
 
             _publicHouseRepository.Update(PHose);
         }
         public void Create(PublicHouseViewModel book)
         {
 
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PublicHouseViewModel, PublicHouse>()).CreateMapper();
-            var pHouse = mapper.Map<PublicHouseViewModel, PublicHouse>(book);
+            var pHouse = Mapper.Map<PublicHouseViewModel, PublicHouse>(book);
            
             _publicHouseRepository.Create(pHouse);
 

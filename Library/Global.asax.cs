@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.BLL.MapperProfiles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,13 @@ namespace Library
     {
         protected void Application_Start()
         {
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile(new BookProfile());
+                cfg.AddProfile(new MagazineProfile());
+                cfg.AddProfile(new BrochureProfile());
+                cfg.AddProfile(new PublicHouseProfile());
+            });
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

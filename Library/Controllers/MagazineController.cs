@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
-using Library.Entities.Interfaces;
 //using Library.Entities.Models;
 using Library.BLL;
 using Library.BLL.Interfaces;
@@ -16,6 +15,7 @@ using ViewEntities.Models;
 
 namespace Library.WEB.Controllers
 {
+    [Authorize]
     public class MagazineController : Controller
     {
 
@@ -31,7 +31,7 @@ namespace Library.WEB.Controllers
 
             return View(magazineService.Get());
         }
-       
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult AddMagazine(MagazineViewModel magazine)
         {
@@ -40,7 +40,7 @@ namespace Library.WEB.Controllers
             return Json(magazine, JsonRequestBehavior.AllowGet);
 
         }
-       
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -53,7 +53,7 @@ namespace Library.WEB.Controllers
 
             return RedirectToAction("Magazines");
         }
-       
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult EditMagazine(MagazineViewModel magazine)
         {

@@ -1,6 +1,5 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <head>
     
@@ -9,7 +8,7 @@
         <script src="../../../../assets/js/vendor/popper.min.js"></script>
         <script src="../../../../dist/js/bootstrap.min.js"></script>*@
 
-    @Styles.Render("~/Content/css")
+    @*@Styles.Render("~/Content/css")*@
 </head>
 <body>
 
@@ -21,7 +20,7 @@
         <div class="jumbotron">
             <h1>Your library</h1>
             <p class="lead">You can manage your library.</p>
-            <p><a class="btn btn-lg btn-success" href="/Book/Books" role="button">Start</a></p>
+            <p><a class="btn btn-lg btn-success" href="/Account/Login" role="button">Start</a></p>
         </div>
 
         <!-- Example row of columns -->

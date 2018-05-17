@@ -22,8 +22,8 @@ namespace Library.BLL.Servises
         public IEnumerable<MagazineViewModel> Get()
         {
             IEnumerable<Magazine> magaz = _magazineRepository.Get();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Magazine, MagazineViewModel>()).CreateMapper();
-            var magazines = mapper.Map<IEnumerable<Magazine>, List<MagazineViewModel>>(magaz);
+          
+            var magazines = Mapper.Map<IEnumerable<Magazine>, List<MagazineViewModel>>(magaz);
 
             return magazines;
         }
@@ -31,8 +31,8 @@ namespace Library.BLL.Servises
         public MagazineViewModel Get(int id)
         {
             Magazine magaz = _magazineRepository.Get(id);
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Magazine, MagazineViewModel>()).CreateMapper();
-            var magazine = mapper.Map<Magazine, MagazineViewModel>(magaz);
+           
+            var magazine = Mapper.Map<Magazine, MagazineViewModel>(magaz);
             return magazine;
         }
 
@@ -43,14 +43,14 @@ namespace Library.BLL.Servises
 
         public void Update(MagazineViewModel book)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<MagazineViewModel, Magazine>()).CreateMapper();
-            var magazine = mapper.Map<MagazineViewModel, Magazine>(book);
+           
+            var magazine = Mapper.Map<MagazineViewModel, Magazine>(book);
             _magazineRepository.Update(magazine);
         }
         public void Create(MagazineViewModel book)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<MagazineViewModel, Magazine>()).CreateMapper();
-            var magazine = mapper.Map<MagazineViewModel, Magazine>(book);
+           
+            var magazine = Mapper.Map<MagazineViewModel, Magazine>(book);
             _magazineRepository.Create(magazine);
 
         }

@@ -6,14 +6,14 @@ using System.Web.Mvc;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
-using Library.Entities.Interfaces;
-using Library.Entities.Models;
 using Library.BLL.Servises;
 using Library.BLL.Interfaces;
 using System.Configuration;
+using ViewEntities.Models;
 
 namespace Library.WEB.Controllers
 {
+    [Authorize]
     public class BookController : Controller
     {
         BookServise _bookServise;
@@ -26,7 +26,7 @@ namespace Library.WEB.Controllers
             _publicationHouseSevice = new PublicationHouseService(ConfigurationManager.ConnectionStrings["LibraryContext"].ConnectionString);
            
         }
-        
+        [Authorize]
         public ActionResult Books()
         {
             return View(_bookServise.Get());
@@ -34,34 +34,34 @@ namespace Library.WEB.Controllers
 
 
         [HttpGet]
-
+        [Authorize(Roles = "admin")]
         public ActionResult AddBook()
         {
 
             return View();
         }
 
-
+        [Authorize(Roles = "admin")]
         [HttpPost]
-        public ActionResult AddBook(Book book/*, int[] selectedPablicHouses*/)
+        public ActionResult AddBook(BookViewModel book, int[] selectedPablicHouses)
         {
 
-           // List<PublicHouse> publicHouses = new List<PublicHouse>();
+            List<PublicHouseViewModel> publicHouses = new List<PublicHouseViewModel>();
 
             if (book == null)
             {
                 return HttpNotFound();
             }
 
-            //if (selectedPablicHouses != null)
-            //{
+            if (selectedPablicHouses != null)
+            {
 
 
-            //    publicHouses.AddRange(_bookServise.GetPublicHouses().Where(x => selectedPablicHouses.Contains(x.Id)).ToList());
+                publicHouses.AddRange(_bookServise.GetPublicHouses().Where(x => selectedPablicHouses.Contains(x.Id)).ToList());
 
 
-            //    book.PublicHouses.AddRange(publicHouses);
-            //}
+                book.PublicHouses.AddRange(publicHouses);
+            }
 
             _bookServise.Create(book);
 
@@ -69,10 +69,10 @@ namespace Library.WEB.Controllers
 
         }
 
-       
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
-            Book b = _bookServise.Get(id);
+            BookViewModel b = _bookServise.Get(id);
             if (b == null)
             {
                 return HttpNotFound("Delete failed");
@@ -81,11 +81,11 @@ namespace Library.WEB.Controllers
             return RedirectToAction("Books");
         }
 
-       
+        [Authorize(Roles = "admin")]
         [HttpPost]
-        public ActionResult EditBook(Book book, List<int> selectedPablicHouses)
+        public ActionResult EditBook(BookViewModel book, List<int> selectedPablicHouses)
         {
-            List<PublicHouse> publicHouses = new List<PublicHouse>();
+            List<PublicHouseViewModel> publicHouses = new List<PublicHouseViewModel>();
 
             if (book.Name == null)
             {
@@ -94,13 +94,13 @@ namespace Library.WEB.Controllers
 
             if (selectedPablicHouses != null)
             {
-                Book bookToUpdate = _bookServise.Get(book.Id);
+                BookViewModel bookToUpdate = _bookServise.Get(book.Id);
 
                 bookToUpdate.PublicHouses.Clear();
 
-                var publicHousesToUpdate = _bookServise.GetPublicHouses().Where(x => selectedPablicHouses.Contains(x.Id)).ToList();
+                //var publicHousesToUpdate = _bookServise.GetPublicHouses().Where(x => selectedPablicHouses.Contains(x.Id)).ToList();
 
-                bookToUpdate.PublicHouses.AddRange(publicHousesToUpdate);
+                //bookToUpdate.PublicHouses.AddRange(publicHousesToUpdate);
 
                 return Json(book);
             }
@@ -112,14 +112,27 @@ namespace Library.WEB.Controllers
         public JsonResult Getbooks(string text)
         {
             var books = _bookServise.Get();
-            return this.Json(books, JsonRequestBehavior.AllowGet);
 
-           // return this.Json(
-           //(from obj in books select new { Id = obj.Id, Name = obj.Name, Author = obj.Author, YearOfPublishing = obj.YearOfPublishing })
-           //, JsonRequestBehavior.AllowGet
-           //);
+            //var publicHousesToAdd = _bookServise.GetPublicHouses();
+
+            // books.ElementAt(0).PublicHouses.Add(publicHousesToAdd.ElementAt(0));
+
+            foreach(var book in books)
+            {
+                foreach(var ph in book.PublicHouses)
+                {
+                    ph.Books = null;
+                }
+                
+            }
+
+            // return this.Json(
+            //(from obj in books select new { Id = obj.Id, Name = obj.Name, Author = obj.Author, YearOfPublishing = obj.YearOfPublishing })
+            //, JsonRequestBehavior.AllowGet
+            //);
+            return Json(books, JsonRequestBehavior.AllowGet);
 
         }
-      
+
     }
 }
