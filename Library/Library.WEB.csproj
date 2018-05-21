@@ -316,6 +316,10 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\admin-book-grid.js" />
+    <Content Include="Scripts\admin-brochure-grid.js" />
+    <Content Include="Scripts\admin-magazine-grid.js" />
+    <Content Include="Scripts\admin-publichouse-grid.js" />
     <Content Include="Scripts\AdminLayout\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -343,6 +347,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\user-book-grid.js" />
+    <Content Include="Scripts\user-brochure-grid.js" />
+    <Content Include="Scripts\user-magazine-grid.js" />
+    <Content Include="Scripts\user-publichouse-grid.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

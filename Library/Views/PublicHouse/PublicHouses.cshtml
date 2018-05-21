@@ -4,7 +4,7 @@
 }
 
 <!DOCTYPE html>
-
+@using Library.BLL.Enums;
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -17,12 +17,12 @@
     <script src="~/js/jquery.min.js"></script>
     <script src="~/js/kendo.all.min.js"></script>
 
-    @{if (@User.IsInRole("admin"))
+    @{if (@User.IsInRole(nameof(IdentityRoles.Admin)))
         {
             <script src="~/Scripts/admin-publichouse-grid.js"></script>
         }
     }
-    @{if (!@User.IsInRole("admin"))
+    @{if (@User.IsInRole(nameof(IdentityRoles.User)))
         {
             <script src="~/Scripts/user-publichouse-grid.js"></script>
         }

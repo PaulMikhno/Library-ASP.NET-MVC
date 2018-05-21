@@ -12,6 +12,7 @@ using System.Configuration;
 using AutoMapper;
 using Library.WEB.Models;
 using ViewEntities.Models;
+using Library.BLL.Enums;
 
 namespace Library.WEB.Controllers
 {
@@ -33,7 +34,7 @@ namespace Library.WEB.Controllers
             return View(brochureService.Get());
            
         }
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = nameof(IdentityRoles.Admin))]
         [HttpPost]
         public ActionResult AddBrochure(BrochureViewModel brochure)
         {
@@ -43,7 +44,7 @@ namespace Library.WEB.Controllers
             return Json(brochure, JsonRequestBehavior.AllowGet);
 
         }
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = nameof(IdentityRoles.Admin))]
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -57,8 +58,8 @@ namespace Library.WEB.Controllers
 
             return RedirectToAction("Brochures");
         }
-        
-        [Authorize(Roles = "admin")]
+
+        [Authorize(Roles = nameof(IdentityRoles.Admin))]
         [HttpPost]
         public ActionResult EditBrochure(BrochureViewModel brochure)
         {

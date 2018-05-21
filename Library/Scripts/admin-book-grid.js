@@ -95,7 +95,7 @@ $(document).ready(function () {
                                     Name: { validation: { required: true } },
                                     Author: { validation: { required: true } },
                                     YearOfPublishing: { validation: { required: true } },
-                                    PublicHouses: { validation: { required: true } }
+                                    //PublicHouses: { validation: { required: true } }
 
                                 }
                         }
@@ -114,7 +114,7 @@ $(document).ready(function () {
                 { field: "Name", title: "Book name" },
                 { field: "Author", title: "Author" },
                 { field: "YearOfPublishing", title: "YearOfPublishing" },
-                { field: "PublicHouses", title: "Publication Houses", template: publicHouses },
+               // { field: "PublicHouses", title: "Publication Houses", template: publicHouses },
                 { command: ["edit", "destroy"], title: "&nbsp;" }],
             editable: "popup"
         })

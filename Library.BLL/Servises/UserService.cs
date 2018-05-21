@@ -12,6 +12,7 @@ using Library.BLL.DTO;
 using Library.BLL.Infrastructure;
 using Microsoft.AspNet.Identity;
 using System.Security.Claims;
+using Library.BLL.Enums;
 
 namespace Library.BLL.Servises
 {
@@ -79,6 +80,19 @@ namespace Library.BLL.Servises
                 }
             }
             await Create(adminDto);
+        }
+
+        private async Task SetInitialDataAsync()
+        {
+            await SetInitialData(new UserDTO
+            {
+                Email = "admin@gmail.com",
+                UserName = "admin@gmail.com",
+                Password = "qwerty",
+                Name = "Paul",
+                Address = "Sunny St.",
+                Role = nameof(IdentityRoles.Admin),
+            }, new List<string> { "User", "Admin" });
         }
 
         public void Dispose()

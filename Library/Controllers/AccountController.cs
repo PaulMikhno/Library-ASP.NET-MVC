@@ -12,6 +12,7 @@ using Library.BLL.Interfaces;
 using Library.BLL.DTO;
 using Library.BLL.Infrastructure;
 using Library.WEB.Models;
+using Library.BLL.Enums;
 
 namespace Library.WEB.Controllers
 {
@@ -86,8 +87,8 @@ namespace Library.WEB.Controllers
                 {
                     Email = model.Email,
                     Password = model.Password,
-                    Role = "user"
-                };
+                    Role = nameof(IdentityRoles.User)
+            };
                 OperationDetails operationDetails = await UserService.Create(userDto);
                 if (operationDetails.Succedeed)
                     return View("Login");
@@ -96,17 +97,6 @@ namespace Library.WEB.Controllers
             }
             return View(model);
         }
-        private async Task SetInitialDataAsync()
-        {
-            await UserService.SetInitialData(new UserDTO
-            {
-                Email = "admin@gmail.com",
-                UserName = "admin@gmail.com",
-                Password = "admin",
-                Name = "Paul",
-                Address = "Sunny St.",
-                Role = "admin",
-            }, new List<string> { "user", "admin" });
-        }
+       
     }
 }

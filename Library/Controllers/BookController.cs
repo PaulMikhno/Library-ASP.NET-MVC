@@ -10,6 +10,7 @@ using Library.BLL.Servises;
 using Library.BLL.Interfaces;
 using System.Configuration;
 using ViewEntities.Models;
+using Library.BLL.Enums;
 
 namespace Library.WEB.Controllers
 {
@@ -34,14 +35,14 @@ namespace Library.WEB.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles =nameof(IdentityRoles.Admin))]
         public ActionResult AddBook()
         {
 
             return View();
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = nameof(IdentityRoles.Admin))]
         [HttpPost]
         public ActionResult AddBook(BookViewModel book, int[] selectedPablicHouses)
         {
@@ -69,7 +70,7 @@ namespace Library.WEB.Controllers
 
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = nameof(IdentityRoles.Admin))]
         public ActionResult Delete(int id)
         {
             BookViewModel b = _bookServise.Get(id);
@@ -81,7 +82,7 @@ namespace Library.WEB.Controllers
             return RedirectToAction("Books");
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = nameof(IdentityRoles.Admin))]
         [HttpPost]
         public ActionResult EditBook(BookViewModel book, List<int> selectedPablicHouses)
         {
@@ -117,20 +118,20 @@ namespace Library.WEB.Controllers
 
             // books.ElementAt(0).PublicHouses.Add(publicHousesToAdd.ElementAt(0));
 
-            foreach(var book in books)
-            {
-                foreach(var ph in book.PublicHouses)
-                {
-                    ph.Books = null;
-                }
-                
-            }
+            //foreach(var book in books)
+            //{
+            //    foreach(var ph in book.PublicHouses)
+            //    {
+            //        ph.Books = null;
+            //    }
 
-            // return this.Json(
-            //(from obj in books select new { Id = obj.Id, Name = obj.Name, Author = obj.Author, YearOfPublishing = obj.YearOfPublishing })
-            //, JsonRequestBehavior.AllowGet
-            //);
-            return Json(books, JsonRequestBehavior.AllowGet);
+            //}
+
+            return this.Json(
+           (from obj in books select new { obj.Id,  obj.Name, obj.Author, obj.YearOfPublishing })
+           , JsonRequestBehavior.AllowGet
+           );
+            // return Json(books, JsonRequestBehavior.AllowGet);
 
         }
 

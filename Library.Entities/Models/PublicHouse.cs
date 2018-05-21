@@ -7,12 +7,12 @@ using System.Text;
 namespace Library.Entities.Models
 {
     [DataContract]
-    public class PublicHouse
-   {
-        [DataMember]
-        public int Id { get; set; }
-        [DataMember]
-        public string Name { get; set; }
+    public class PublicHouse: BaseModel
+    {
+        //[DataMember]
+        //public int Id { get; set; }
+        //[DataMember]
+        //public string Name { get; set; }
         [DataMember]
         public string Address { get; set; }
 

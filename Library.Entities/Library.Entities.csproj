@@ -82,6 +82,7 @@
     <Compile Include="Interfaces\IBrochureRepository.cs" />
     <Compile Include="Interfaces\IMagazineRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Brochure.cs" />
     <Compile Include="Models\Magazine.cs" />

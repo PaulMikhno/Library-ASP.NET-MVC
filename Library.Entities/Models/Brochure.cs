@@ -7,13 +7,13 @@ using System.Web;
 namespace Library.Entities.Models
 {
     [DataContract]
-    public class Brochure
+    public class Brochure: BaseModel
     {
-        [DataMember]
-        public int Id { get; set; }
+        //[DataMember]
+        //public int Id { get; set; }
         
-        [DataMember]
-        public string Name { get; set; }
+        //[DataMember]
+        //public string Name { get; set; }
 
         [DataMember]
         public string TypeOfCover { get; set; }

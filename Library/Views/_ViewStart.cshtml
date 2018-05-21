@@ -1,5 +1,6 @@
-﻿@{
-    var role = User.IsInRole("admin");
+﻿@using Library.BLL.Enums;
+@{
+    var role = User.IsInRole(nameof(IdentityRoles.Admin));
     if (role)
     {
         Layout = "~/Views/Shared/_AdminLayout.cshtml";

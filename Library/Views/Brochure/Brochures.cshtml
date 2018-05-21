@@ -1,9 +1,9 @@
-﻿@model IEnumerable <ViewEntities.Models.BrochureViewModel>
+﻿@model IEnumerable<ViewEntities.Models.BrochureViewModel>
 
 @{
     ViewBag.Title = "Brochures";
 }
-
+@using Library.BLL.Enums;
 <!DOCTYPE html>
 
 <html>
@@ -18,12 +18,12 @@
     <script src="~/js/jquery.min.js"></script>
     <script src="~/js/kendo.all.min.js"></script>
 
-    @{if (@User.IsInRole("admin"))
+    @{if (@User.IsInRole(nameof(IdentityRoles.Admin)))
         {
             <script src="~/Scripts/admin-brochure-grid.js"></script>
         }
     }
-    @{if (!@User.IsInRole("admin"))
+    @{if (@User.IsInRole(nameof(IdentityRoles.User)))
         {
             <script src="~/Scripts/user-brochure-grid.js"></script>
         }
