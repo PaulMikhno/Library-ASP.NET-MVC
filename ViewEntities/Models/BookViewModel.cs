@@ -19,7 +19,7 @@ namespace ViewEntities.Models
         [DataMember]
         public string YearOfPublishing { get; set; }
 
-        public /*virtual*/ List<PublicHouseViewModel> PublicHouses { get; set; }
+        public virtual List<PublicHouseViewModel> PublicHouses { get; set; }
 
         public BookViewModel()
         {

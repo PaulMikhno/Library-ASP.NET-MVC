@@ -38,13 +38,26 @@ namespace Library.DAL.Repositories
         
         public void Update(Book item)
         {
-            db.Entry(item).State = EntityState.Modified;
+
+            var book= db.Books.Find(item.Id);
+            var books = Get();
+
+            book.PublicHouses.Clear();
+
+            foreach (var publicHouse in item.PublicHouses)
+            {
+                book.PublicHouses.Add(db.PublicHouses.Find(publicHouse.Id));
+            }
+            db.Entry(book).State = EntityState.Modified;
+            var book2= db.Books.Find(item.Id);
+
             db.SaveChanges();
         }
 
         public IEnumerable<Book> Get()
         {
-           return db.Books.Include(x => x.PublicHouses).AsNoTracking().ToList();
+            return db.Books.Include(x => x.PublicHouses).ToList();
+           // return db.Books.ToList();
         }
 
         public Book Get(int id)

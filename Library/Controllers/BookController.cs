@@ -89,23 +89,14 @@ namespace Library.WEB.Controllers
         {
             List<PublicHouseViewModel> publicHouses = new List<PublicHouseViewModel>();
 
+            var bookToUpdate = _bookServise.Get(book.Id);
+            bookToUpdate.PublicHouses = book.PublicHouses;
+
             if (book.Name == null)
             {
                 return HttpNotFound();
             }
-
-            //if (selectedPablicHouses != null)
-            //{
-            //    BookViewModel bookToUpdate = _bookServise.Get(book.Id);
-
-            //    bookToUpdate.PublicHouses.Clear();
-
-                //var publicHousesToUpdate = _bookServise.GetPublicHouses().Where(x => selectedPablicHouses.Contains(x.Id)).ToList();
-
-                //bookToUpdate.PublicHouses.AddRange(publicHousesToUpdate);
-
-            //    return Json(book);
-            //}
+            
             _bookServise.Update(book);
             return Json(book);
         }
@@ -115,9 +106,12 @@ namespace Library.WEB.Controllers
         {
             var books = _bookServise.Get();
 
-            //var publicHousesToAdd = _bookServise.GetPublicHouses();
+            var publicHousesToAdd = _bookServise.GetPublicHouses();
 
             // books.ElementAt(0).PublicHouses.Add(publicHousesToAdd.ElementAt(0));
+
+
+         
 
             foreach (var book in books)
             {

@@ -18,7 +18,7 @@ $(document).ready(function () {
                             });
                     },
                     update: function (options) {
-                        debugger;
+                       
                         $.ajax(
                             {
                                 url: "/Brochure/EditBrochure",
@@ -50,7 +50,7 @@ $(document).ready(function () {
                             });
                     },
                     create: function (options) {
-                        debugger;
+                        
                         $.ajax(
                             {
                                 url: "/Brochure/AddBrochure",
@@ -115,41 +115,20 @@ $(document).ready(function () {
                 { command: ["edit", "destroy"], title: "&nbsp;" }],
             editable: "popup"
         })
-
-
-    var data = [
-        { text: "Hard", value: 1 },
-        { text: "Mild", value: 2 },
-        
-    ];
-
+    
     function selector(container, options)
     {
-        $('<select id="TypeOfCover">').appendTo(container)
+        $('<input name="TypeOfCover">').appendTo(container)
             .kendoDropDownList({
-                
-                dataTextField: "text",
-                dataValueField: "value",
                 dataSource: [
-                    { text: "Hard", value: 1 },
-                    { text: "Mild", value: 2 },
-
+                    { id: 1, name: "Hard" },
+                    { id: 2, name: "Mild" }
                 ],
-                index: 0,
-                suggest: true,
-               // change: onChange
+                dataTextField: "name",
+                dataValueField: "id",
+                index: 2
             });
-      
     }
-
-    //function onChange()
-    //{
-    //    var value = $("#TypeOfCover").val();
-    //    $("#TypeOfCover")
-    //        .toggleClass("Hard", value == "1")
-    //        .toggleClass("Mild", value == "2");
-
-    //};
 
     function typeOfCover(options)
     {

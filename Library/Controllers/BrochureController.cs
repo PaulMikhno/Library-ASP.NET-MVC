@@ -81,11 +81,6 @@ namespace Library.WEB.Controllers
             return this.Json(brochures, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetTypesOfCover(string text)
-        {
-            var types = new List<TypeOfCoverView> { TypeOfCoverView.Hard, TypeOfCoverView.Mild };
-
-            return this.Json(types, JsonRequestBehavior.AllowGet);
-        }
+       
     }
 }

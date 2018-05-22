@@ -17,7 +17,7 @@ namespace Library.Entities.Models
         public string Address { get; set; }
 
         [IgnoreDataMember]
-        public ICollection<Book> Books { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
 
         
         public PublicHouse()
