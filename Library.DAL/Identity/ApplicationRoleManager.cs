@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Library.DAL.Entities;
+using Library.Entities.Entities;
 namespace Library.DAL.Identity
 {
     public class ApplicationRoleManager : RoleManager<ApplicationRole>

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-
-using Library.DAL.Entities;
+using Library.Entities.Entities;
 namespace Library.DAL.Identity
 {
     public class ApplicationUserManager : UserManager<ApplicationUser>
@@ -9,6 +8,7 @@ namespace Library.DAL.Identity
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
                 : base(store)
         {
+
         }
     }
 

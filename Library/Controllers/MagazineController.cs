@@ -12,7 +12,7 @@ using Library.BLL.Interfaces;
 using Library.BLL.Servises;
 using System.Configuration;
 using ViewEntities.Models;
-using Library.BLL.Enums;
+using ViewEntities.Enums;
 
 namespace Library.WEB.Controllers
 {
@@ -32,7 +32,8 @@ namespace Library.WEB.Controllers
 
             return View(magazineService.Get());
         }
-        [Authorize(Roles = nameof(IdentityRoles.Admin))]
+
+        [Authorize(Roles = nameof(IdentityViewRoles.Admin))]
         [HttpPost]
         public ActionResult AddMagazine(MagazineViewModel magazine)
         {
@@ -41,7 +42,8 @@ namespace Library.WEB.Controllers
             return Json(magazine, JsonRequestBehavior.AllowGet);
 
         }
-        [Authorize(Roles = nameof(IdentityRoles.Admin))]
+
+        [Authorize(Roles = nameof(IdentityViewRoles.Admin))]
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -54,7 +56,8 @@ namespace Library.WEB.Controllers
 
             return RedirectToAction("Magazines");
         }
-        [Authorize(Roles = nameof(IdentityRoles.Admin))]
+
+        [Authorize(Roles = nameof(IdentityViewRoles.Admin))]
         [HttpPost]
         public ActionResult EditMagazine(MagazineViewModel magazine)
         {

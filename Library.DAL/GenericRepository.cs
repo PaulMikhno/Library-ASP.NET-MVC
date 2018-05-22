@@ -11,7 +11,7 @@ namespace Library.DAL
 {
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private DbContext context;//may be static?
+        private DbContext context;
         DbSet<TEntity> dbSet;
 
 
@@ -40,7 +40,7 @@ namespace Library.DAL
         public void Update(TEntity item)
         {
             context.Entry(item).State = EntityState.Modified;
-            context.SaveChanges();//something wrong 
+            context.SaveChanges();
         }
 
         public void Remove(int id)

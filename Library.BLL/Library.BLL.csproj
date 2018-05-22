@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\UserDTO.cs" />
-    <Compile Include="Enums\Roles.cs" />
     <Compile Include="Infrastructure\OperationDetails.cs" />
     <Compile Include="Interfaces\IDownloadLogic.cs" />
     <Compile Include="Interfaces\IServiceCreator.cs" />

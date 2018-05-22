@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\IdentityViewRoles.cs" />
+    <Compile Include="Enums\TypeOfCoverView.cs" />
     <Compile Include="Models\BookViewModel.cs" />
     <Compile Include="Models\BrochureViewModel.cs" />
     <Compile Include="Models\MagazineViewModel.cs" />

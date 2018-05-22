@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Library.DAL.Entities;
+using Library.Entities.Entities;
 using Library.DAL.Identity;
 using Library.DAL.Interfaces;
 using Library.BLL.Interfaces;

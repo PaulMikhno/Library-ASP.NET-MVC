@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Entities.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -16,7 +17,7 @@ namespace Library.Entities.Models
         //public string Name { get; set; }
 
         [DataMember]
-        public string TypeOfCover { get; set; }
+        public TypeOfCover TypeOfCover { get; set; }
 
         [DataMember]
         public int NumberOfPages { get; set; }

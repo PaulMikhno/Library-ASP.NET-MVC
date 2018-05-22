@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.DAL.Entities
+namespace Library.Entities.Entities
 {
     public class ApplicationUser : IdentityUser
     {

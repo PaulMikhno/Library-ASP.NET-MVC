@@ -1,7 +1,7 @@
 ﻿
 @model  IEnumerable<ViewEntities.Models.BookViewModel> 
 @using Library.Entities.Models;
-@using Library.BLL.Enums;
+@using ViewEntities.Enums;
 @{
     ViewBag.Title = "Books";
 }
@@ -19,12 +19,12 @@
     <script src="~/js/kendo.all.min.js"></script>
 
 
-    @{if (@User.IsInRole(nameof(IdentityRoles.Admin)))
+    @{if (@User.IsInRole(nameof(IdentityViewRoles.Admin)))
         {
             <script src="~/Scripts/admin-book-grid.js"></script>
         }
     }
-    @{if (@User.IsInRole(nameof(IdentityRoles.User)))
+    @{if (@User.IsInRole(nameof(IdentityViewRoles.User)))
         {
          <script src="~/Scripts/user-book-grid.js"></script>
         }

@@ -10,7 +10,7 @@ using Library.BLL.Servises;
 using Library.BLL.Interfaces;
 using System.Configuration;
 using ViewEntities.Models;
-using Library.BLL.Enums;
+using ViewEntities.Enums;
 
 namespace Library.WEB.Controllers
 {
@@ -33,7 +33,7 @@ namespace Library.WEB.Controllers
             return View(publicHouseService.Get());
         }
 
-        [Authorize(Roles = nameof(IdentityRoles.Admin))]
+        [Authorize(Roles = nameof(IdentityViewRoles.Admin))]
         [HttpPost]
         public ActionResult AddPublicHouse(PublicHouseViewModel publicHouse)
         {
@@ -48,7 +48,7 @@ namespace Library.WEB.Controllers
 
         }
 
-        [Authorize(Roles = nameof(IdentityRoles.Admin))]
+        [Authorize(Roles = nameof(IdentityViewRoles.Admin))]
         public ActionResult Delete(int id)
         {
             PublicHouseViewModel b = publicHouseService.Get(id);
@@ -61,7 +61,7 @@ namespace Library.WEB.Controllers
             return RedirectToAction("PublicHouses");
         }
 
-        [Authorize(Roles = nameof(IdentityRoles.Admin))]
+        [Authorize(Roles = nameof(IdentityViewRoles.Admin))]
         [HttpPost]
         public ActionResult EditPublicHouse(PublicHouseViewModel publicHouse)
         {
@@ -77,7 +77,7 @@ namespace Library.WEB.Controllers
         {
             var  publicHouses = publicHouseService.Get();
             return this.Json(
-           (from obj in publicHouses select new { Id = obj.Id, Name = obj.Name, Address=obj.Address })
+           (from obj in publicHouses select new {  obj.Id, obj.Name, obj.Address })
            , JsonRequestBehavior.AllowGet
            );
         }

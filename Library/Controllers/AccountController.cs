@@ -12,7 +12,7 @@ using Library.BLL.Interfaces;
 using Library.BLL.DTO;
 using Library.BLL.Infrastructure;
 using Library.WEB.Models;
-using Library.BLL.Enums;
+using ViewEntities.Enums;
 
 namespace Library.WEB.Controllers
 {
@@ -50,15 +50,16 @@ namespace Library.WEB.Controllers
                 ClaimsIdentity claim = await UserService.Authenticate(userDto);
                 if (claim == null)
                 {
-                    ModelState.AddModelError("", "Неверный логин или пароль.");
+                    ModelState.AddModelError("", "Invalid login or password.");
                 }
-                else
+                if(claim!=null)
                 {
                     AuthenticationManager.SignOut();
                     AuthenticationManager.SignIn(new AuthenticationProperties
                     {
                         IsPersistent = true
                     }, claim);
+
                     return RedirectToAction("Books", "Book");
                 }
             }
@@ -87,13 +88,18 @@ namespace Library.WEB.Controllers
                 {
                     Email = model.Email,
                     Password = model.Password,
-                    Role = nameof(IdentityRoles.User)
+                    Role = nameof(IdentityViewRoles.User)
             };
                 OperationDetails operationDetails = await UserService.Create(userDto);
+
                 if (operationDetails.Succedeed)
+                {
                     return View("Login");
-                else
+                }
+                if (!operationDetails.Succedeed)
+                {
                     ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
+                }
             }
             return View(model);
         }

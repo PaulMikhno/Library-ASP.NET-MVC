@@ -17,7 +17,7 @@ namespace ViewEntities.Models
         public string Address { get; set; }
 
         [IgnoreDataMember]
-        public ICollection<BookViewModel> Books { get; set; }
+        public virtual ICollection<BookViewModel> Books { get; set; }
 
 
         public PublicHouseViewModel()

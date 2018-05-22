@@ -22,19 +22,19 @@ namespace Library.BLL.Servises
 
         public IEnumerable<PublicHouseViewModel> Get()
         {
-            IEnumerable<PublicHouse> pH = _publicHouseRepository.Get();
-            var pHouses = Mapper.Map<IEnumerable<PublicHouse>, List<PublicHouseViewModel>>(pH);
+            IEnumerable<PublicHouse> publicHouseDB = _publicHouseRepository.Get();
+            var publicHouses = Mapper.Map<IEnumerable<PublicHouse>, List<PublicHouseViewModel>>(publicHouseDB);
 
-            return pHouses;
+            return publicHouses;
 
         }
 
         public PublicHouseViewModel Get(int id)
         {
-            PublicHouse pH = _publicHouseRepository.Get(id);
+            PublicHouse publicHouseDB = _publicHouseRepository.Get(id);
            
-            var PHouse = Mapper.Map<PublicHouse, PublicHouseViewModel>(pH);
-            return PHouse;
+            var publicHouse = Mapper.Map<PublicHouse, PublicHouseViewModel>(publicHouseDB);
+            return publicHouse;
         }
 
         public void Remove(int id)
@@ -42,20 +42,19 @@ namespace Library.BLL.Servises
             _publicHouseRepository.Remove(id);
         }
 
-        public void Update(PublicHouseViewModel book)
+        public void Update(PublicHouseViewModel publicHouseView)
         {
 
-        
-            var PHose = Mapper.Map<PublicHouseViewModel, PublicHouse>(book);
+            var publicHouse = Mapper.Map<PublicHouseViewModel, PublicHouse>(publicHouseView);
 
-            _publicHouseRepository.Update(PHose);
+            _publicHouseRepository.Update(publicHouse);
         }
-        public void Create(PublicHouseViewModel book)
+        public void Create(PublicHouseViewModel publicHousesView)
         {
 
-            var pHouse = Mapper.Map<PublicHouseViewModel, PublicHouse>(book);
+            var publicHouses = Mapper.Map<PublicHouseViewModel, PublicHouse>(publicHousesView);
            
-            _publicHouseRepository.Create(pHouse);
+            _publicHouseRepository.Create(publicHouses);
 
         }
 

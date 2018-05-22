@@ -11,11 +11,12 @@ namespace Library.DAL.Repositories
     public class BookRepository 
     {
         private LibraryContext db;
-        private bool disposed = false;
 
         public BookRepository(LibraryContext dbContext)
         {
+            
             this.db = dbContext;
+
         }
 
         public void Create(Book item)
@@ -33,7 +34,6 @@ namespace Library.DAL.Repositories
                 db.SaveChanges();
 
             }
-
         }
         
         public void Update(Book item)

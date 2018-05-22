@@ -9,12 +9,18 @@ namespace Library.BLL.Servises
 {
   public  class DownloadLogic : IDownloadLogic
     {
+        string path { get; set; }
+        public DownloadLogic()
+        {
+            var location = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            path = Path.GetDirectoryName(location);
+        }
+
         public void Download(Book book)
         {
             XmlSerializer formatter = new XmlSerializer(typeof(Book));
 
-            // получаем поток, куда будем записывать сериализованный объект
-            using (FileStream fs = new FileStream(String.Format("C:\\Users\\Anuitex-100\\Desktop\\{0}.xml", book.Name), FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(String.Format(path, book.Name), FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, book);
             }
@@ -24,8 +30,8 @@ namespace Library.BLL.Servises
         {
             XmlSerializer formatter = new XmlSerializer(typeof(Magazine));
 
-            // получаем поток, куда будем записывать сериализованный объект
-            using (FileStream fs = new FileStream(String.Format("C:\\Users\\Anuitex-100\\Desktop\\{0}.xml", magazine.Name), FileMode.OpenOrCreate))
+     
+            using (FileStream fs = new FileStream(String.Format(path, magazine.Name), FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, magazine);
             }
@@ -34,8 +40,8 @@ namespace Library.BLL.Servises
         {
             XmlSerializer formatter = new XmlSerializer(typeof(Brochure));
 
-            // получаем поток, куда будем записывать сериализованный объект
-            using (FileStream fs = new FileStream(String.Format("C:\\Users\\Anuitex-100\\Desktop\\{0}.xml", brochure.Name), FileMode.OpenOrCreate))
+           
+            using (FileStream fs = new FileStream(String.Format(path, brochure.Name), FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, brochure);
             }

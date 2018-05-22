@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ViewEntities.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -16,7 +17,7 @@ namespace ViewEntities.Models
         public string Name { get; set; }
 
         [DataMember]
-        public string TypeOfCover { get; set; }
+        public TypeOfCoverView TypeOfCover { get; set; }
 
         [DataMember]
         public int NumberOfPages { get; set; }

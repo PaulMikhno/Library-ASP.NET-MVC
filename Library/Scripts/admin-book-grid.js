@@ -18,12 +18,13 @@ $(document).ready(function () {
                             });
                     },
                     update: function (options) {
-
+                     
                         $.ajax(
                             {
                                 url: "/Book/EditBook",
                                 dataType: "json",
                                 type: "POST",
+                                
                                 data:
                                     {
                                         Book: options.data.models[0]
@@ -76,9 +77,9 @@ $(document).ready(function () {
                         if (operation !== "destroy" && options.models) {
                             return { models: kendo.stringify(options.models) };
                         }
-                        if (operation !== "update" && options.models) {
-                            return { models: kendo.stringify(options.models) };
-                        }
+                        //if (operation !== "update" && options.models) {
+                        //    return { models: kendo.stringify(options.models) };
+                        //}
 
                     }
                 },
@@ -95,8 +96,7 @@ $(document).ready(function () {
                                     Name: { validation: { required: true } },
                                     Author: { validation: { required: true } },
                                     YearOfPublishing: { validation: { required: true } },
-                                    //PublicHouses: { validation: { required: true } }
-
+                                    PublicHouses: { validation: { required: true } }
                                 }
                         }
                 }
@@ -108,24 +108,31 @@ $(document).ready(function () {
             dataSource: dataSource,
 
             pageable: true,
-            height: 550,
+            height: 500,
             toolbar: ["create"],
             columns: [
+
                 { field: "Name", title: "Book name" },
+
                 { field: "Author", title: "Author" },
+
                 { field: "YearOfPublishing", title: "YearOfPublishing" },
-               // { field: "PublicHouses", title: "Publication Houses", template: publicHouses },
+
+                { field: "PublicHouses", title: "Publication Houses", template: publicHouses, editor: selector },
+
                 { command: ["edit", "destroy"], title: "&nbsp;" }],
+
             editable: "popup"
+
         })
 
     function selector(container, options) {
-        $('<input name="PublicationHouses">').appendTo(container)
+        $('<input name="PublicHouses">').appendTo(container)
             .kendoMultiSelect({
                 dataSource: new kendo.data.DataSource({
                     transport: {
                         read: {
-                            url: '/PublicHouse/GetPublicationHouses',
+                            url: '/Book/GetPublicHouses',
                             dataType: "Json"
                         }
                     }
@@ -135,8 +142,11 @@ $(document).ready(function () {
             });
     }
 });
-function publicHouses(options) {
-    if (options.PublicHouses) {
+
+function publicHouses(options)
+{
+    if (options.PublicHouses)
+    {
         return options.PublicHouses.map(x => x.Name).join(",");
     }
 }

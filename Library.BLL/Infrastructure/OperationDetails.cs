@@ -19,4 +19,4 @@ namespace Library.BLL.Infrastructure
         public string Property { get; private set; }
     }
 }
-/*Данный класс хранит информацию об успешности операции*/
+

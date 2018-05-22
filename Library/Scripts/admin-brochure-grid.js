@@ -18,7 +18,7 @@ $(document).ready(function () {
                             });
                     },
                     update: function (options) {
-
+                        debugger;
                         $.ajax(
                             {
                                 url: "/Brochure/EditBrochure",
@@ -50,6 +50,7 @@ $(document).ready(function () {
                             });
                     },
                     create: function (options) {
+                        debugger;
                         $.ajax(
                             {
                                 url: "/Brochure/AddBrochure",
@@ -109,9 +110,57 @@ $(document).ready(function () {
             toolbar: ["create"],
             columns: [
                 { field: "Name", title: "Brochure name" },
-                { field: "TypeOfCover", title: "TypeOfCover" },
+                { field: "TypeOfCover", title: "TypeOfCover", template: typeOfCover, editor: selector},
                 { field: "NumberOfPages", title: "NumberOfPages" },
                 { command: ["edit", "destroy"], title: "&nbsp;" }],
             editable: "popup"
         })
-});
+
+
+    var data = [
+        { text: "Hard", value: 1 },
+        { text: "Mild", value: 2 },
+        
+    ];
+
+    function selector(container, options)
+    {
+        $('<select id="TypeOfCover">').appendTo(container)
+            .kendoDropDownList({
+                
+                dataTextField: "text",
+                dataValueField: "value",
+                dataSource: [
+                    { text: "Hard", value: 1 },
+                    { text: "Mild", value: 2 },
+
+                ],
+                index: 0,
+                suggest: true,
+               // change: onChange
+            });
+      
+    }
+
+    //function onChange()
+    //{
+    //    var value = $("#TypeOfCover").val();
+    //    $("#TypeOfCover")
+    //        .toggleClass("Hard", value == "1")
+    //        .toggleClass("Mild", value == "2");
+
+    //};
+
+    function typeOfCover(options)
+    {
+        if (options.TypeOfCover == 1)
+        {
+            return "Hard";
+        }
+        if (options.TypeOfCover == 2)
+        {
+            return "Mild";
+        }
+        return "Null";
+    }
+})

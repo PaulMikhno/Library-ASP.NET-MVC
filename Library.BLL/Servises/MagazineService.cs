@@ -21,19 +21,19 @@ namespace Library.BLL.Servises
 
         public IEnumerable<MagazineViewModel> Get()
         {
-            IEnumerable<Magazine> magaz = _magazineRepository.Get();
+            IEnumerable<Magazine> magazineFromDB = _magazineRepository.Get();
           
-            var magazines = Mapper.Map<IEnumerable<Magazine>, List<MagazineViewModel>>(magaz);
+            var magazines = Mapper.Map<IEnumerable<Magazine>, List<MagazineViewModel>>(magazineFromDB);
 
             return magazines;
         }
 
         public MagazineViewModel Get(int id)
         {
-            Magazine magaz = _magazineRepository.Get(id);
+            Magazine magazineFromDB = _magazineRepository.Get(id);
            
-            var magazine = Mapper.Map<Magazine, MagazineViewModel>(magaz);
-            return magazine;
+            var magazines = Mapper.Map<Magazine, MagazineViewModel>(magazineFromDB);
+            return magazines;
         }
 
         public void Remove(int id)
@@ -41,16 +41,16 @@ namespace Library.BLL.Servises
             _magazineRepository.Remove(id);
         }
 
-        public void Update(MagazineViewModel book)
+        public void Update(MagazineViewModel magazineView)
         {
            
-            var magazine = Mapper.Map<MagazineViewModel, Magazine>(book);
+            var magazine = Mapper.Map<MagazineViewModel, Magazine>(magazineView);
             _magazineRepository.Update(magazine);
         }
-        public void Create(MagazineViewModel book)
+        public void Create(MagazineViewModel magazineView)
         {
            
-            var magazine = Mapper.Map<MagazineViewModel, Magazine>(book);
+            var magazine = Mapper.Map<MagazineViewModel, Magazine>(magazineView);
             _magazineRepository.Create(magazine);
 
         }

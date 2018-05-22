@@ -64,11 +64,11 @@ namespace Library.BLL.Servises
 
         public IEnumerable<PublicHouseViewModel> GetPublicHouses()
         {
-            IEnumerable<PublicHouse> pH = _publicHouseRepository.Get();
+            IEnumerable<PublicHouse> publicHousesDB = _publicHouseRepository.Get();
           
-            var pHouses = Mapper.Map<IEnumerable<PublicHouse>, List<PublicHouseViewModel>>(pH);
+            var publicHouses = Mapper.Map<IEnumerable<PublicHouse>, List<PublicHouseViewModel>>(publicHousesDB);
 
-            return pHouses;
+            return publicHouses;
         }
     }
 

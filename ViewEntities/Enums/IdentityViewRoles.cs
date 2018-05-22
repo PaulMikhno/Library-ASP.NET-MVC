@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Library.BLL.Enums
+namespace ViewEntities.Enums
 {
-   public enum IdentityRoles
+    public enum IdentityViewRoles
     {
         None = 0,
         User = 1,

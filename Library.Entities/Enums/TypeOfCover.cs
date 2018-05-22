@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity.EntityFramework;
-namespace Library.DAL.Entities
+
+namespace Library.Entities.Enums
 {
-    public class ApplicationRole : IdentityRole
+   public enum TypeOfCover
     {
+        None=0,
+
+        Hard=1,
+
+        Mild=2
     }
 }

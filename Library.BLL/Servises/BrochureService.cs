@@ -22,18 +22,18 @@ namespace Library.BLL.Servises
 
         public IEnumerable<BrochureViewModel> Get()
         {
-            IEnumerable<Brochure> brochur = _brochureRepository.Get();
+            IEnumerable<Brochure> brochureFromDB = _brochureRepository.Get();
             
-            var brochures = Mapper.Map<IEnumerable<Brochure>, List<BrochureViewModel>>(brochur);
+            var brochures = Mapper.Map<IEnumerable<Brochure>, List<BrochureViewModel>>(brochureFromDB);
 
             return brochures;
         }
 
         public BrochureViewModel Get(int id)
         {
-            Brochure brochur = _brochureRepository.Get(id);
+            Brochure brochureFromDB = _brochureRepository.Get(id);
           
-            var brochure = Mapper.Map<Brochure, BrochureViewModel>(brochur);
+            var brochure = Mapper.Map<Brochure, BrochureViewModel>(brochureFromDB);
             return brochure;
         }
 
@@ -42,16 +42,16 @@ namespace Library.BLL.Servises
             _brochureRepository.Remove(id);
         }
 
-        public void Update(BrochureViewModel book)
+        public void Update(BrochureViewModel brochureView)
         {
-            var brochur = Mapper.Map<BrochureViewModel, Brochure>(book);
-            _brochureRepository.Update(brochur);
+            var brochure = Mapper.Map<BrochureViewModel, Brochure>(brochureView);
+            _brochureRepository.Update(brochure);
         }
-        public void Create(BrochureViewModel book)
+        public void Create(BrochureViewModel brochureView)
         {
-            var brochur = Mapper.Map<BrochureViewModel, Brochure>(book);
+            var brochure = Mapper.Map<BrochureViewModel, Brochure>(brochureView);
 
-            _brochureRepository.Create(brochur);
+            _brochureRepository.Create(brochure);
 
         }
     }

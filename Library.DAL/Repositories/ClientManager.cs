@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Library.DAL.Entities;
+using Library.Entities.Entities;
 using Library.DAL.Identity;
 using Library.DAL.Interfaces;
 
@@ -13,6 +13,7 @@ namespace Library.DAL.Repositories
     public class ClientManager : IClientManager
     {
         public ApplicationContext Database { get; set; }
+
         public ClientManager(ApplicationContext db)
         {
             Database = db;

@@ -20,7 +20,7 @@ namespace Library.Entities.Models
         [DataMember]
         public string YearOfPublishing { get; set; }
 
-        public virtual List<PublicHouse> PublicHouses { get; set; }
+        public /*virtual*/ List<PublicHouse> PublicHouses { get; set; }
 
         public Book()
         {

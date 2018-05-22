@@ -78,6 +78,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ApplicationRole .cs" />
+    <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Entities\ClientProfile.cs" />
+    <Compile Include="Enums\Roles.cs" />
+    <Compile Include="Enums\TypeOfCover.cs" />
     <Compile Include="Interfaces\IBookRepository.cs" />
     <Compile Include="Interfaces\IBrochureRepository.cs" />
     <Compile Include="Interfaces\IMagazineRepository.cs" />

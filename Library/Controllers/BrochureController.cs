@@ -12,7 +12,7 @@ using System.Configuration;
 using AutoMapper;
 using Library.WEB.Models;
 using ViewEntities.Models;
-using Library.BLL.Enums;
+using ViewEntities.Enums;
 
 namespace Library.WEB.Controllers
 {
@@ -34,7 +34,8 @@ namespace Library.WEB.Controllers
             return View(brochureService.Get());
            
         }
-        [Authorize(Roles = nameof(IdentityRoles.Admin))]
+
+        [Authorize(Roles = nameof(IdentityViewRoles.Admin))]
         [HttpPost]
         public ActionResult AddBrochure(BrochureViewModel brochure)
         {
@@ -44,7 +45,8 @@ namespace Library.WEB.Controllers
             return Json(brochure, JsonRequestBehavior.AllowGet);
 
         }
-        [Authorize(Roles = nameof(IdentityRoles.Admin))]
+
+        [Authorize(Roles = nameof(IdentityViewRoles.Admin))]
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -59,7 +61,7 @@ namespace Library.WEB.Controllers
             return RedirectToAction("Brochures");
         }
 
-        [Authorize(Roles = nameof(IdentityRoles.Admin))]
+        [Authorize(Roles = nameof(IdentityViewRoles.Admin))]
         [HttpPost]
         public ActionResult EditBrochure(BrochureViewModel brochure)
         {
@@ -77,6 +79,13 @@ namespace Library.WEB.Controllers
             var brochures = brochureService.Get();
             
             return this.Json(brochures, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetTypesOfCover(string text)
+        {
+            var types = new List<TypeOfCoverView> { TypeOfCoverView.Hard, TypeOfCoverView.Mild };
+
+            return this.Json(types, JsonRequestBehavior.AllowGet);
         }
     }
 }
