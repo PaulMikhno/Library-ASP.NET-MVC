@@ -16,13 +16,13 @@ namespace ViewEntities.Models
         [DataMember]
         public string Address { get; set; }
 
-        [IgnoreDataMember]
-        public virtual ICollection<BookViewModel> Books { get; set; }
+        //[IgnoreDataMember]
+        //public  ICollection<BookViewModel> Books { get; set; }
 
 
         public PublicHouseViewModel()
         {
-            Books = new List<BookViewModel>();
+            //Books = new List<BookViewModel>();
         }
 
     }

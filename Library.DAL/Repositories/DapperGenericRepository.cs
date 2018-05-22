@@ -10,10 +10,11 @@ using System.Configuration;
 using System.Data.SqlClient;
 
 using Dapper;
+using Library.Entities.Models;
 
 namespace Library.DAL.Repositories
 {
-    public class DapperGenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class DapperGenericRepository<TEntity> : IRepository<TEntity> where TEntity : BaseModel
     {
         string connectionString;
 
@@ -37,8 +38,10 @@ namespace Library.DAL.Repositories
 
         public TEntity Get(int id)
         {
+            var IdString = nameof(BaseModel.Id);
             var query = $"select * from {typeof(TEntity).Name}s";
-            string where = " where Id= " + id;
+            string where=String.Format( " where {0} = {1} ", IdString, id);
+           
             if (!string.IsNullOrWhiteSpace(where))
                 query += where;
 
@@ -51,6 +54,7 @@ namespace Library.DAL.Repositories
 
         public void Create(TEntity item)
         {
+            
             var columns = GetColumns();
             var stringOfColumns = string.Join(", ", columns);
             var stringOfParameters = string.Join(", ", columns.Select(e => "@" + e));
@@ -65,9 +69,10 @@ namespace Library.DAL.Repositories
 
         public void Update(TEntity item)
         {
+            var IdString = nameof(BaseModel.Id);
             var columns = GetColumns();
             var stringOfColumns = string.Join(", ", columns.Select(e => $"{e} = @{e}"));
-            var query = $"update {typeof(TEntity).Name}s set {stringOfColumns} where Id = @Id";
+            var query = $"update {typeof(TEntity).Name}s set {stringOfColumns} where {IdString} = @Id";
 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -78,7 +83,9 @@ namespace Library.DAL.Repositories
 
         public void Remove(int id)
         {
-            var query = $"delete from {typeof(TEntity).Name}s where Id = @Id";
+            var IdString = nameof(BaseModel.Id);
+
+            var query = $"delete from {typeof(TEntity).Name}s where {IdString} = @Id";
 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -103,9 +110,11 @@ namespace Library.DAL.Repositories
 
         private IEnumerable<string> GetColumns()
         {
+            var IdString = nameof(BaseModel.Id);
+
             return typeof(TEntity)
                     .GetProperties()
-                    .Where(e => e.Name != "Id" && !e.PropertyType.GetTypeInfo().IsGenericType)
+                    .Where(e => e.Name != IdString && !e.PropertyType.GetTypeInfo().IsGenericType)
                     .Select(e => e.Name);
         }
 

@@ -113,13 +113,13 @@ namespace Library.WEB.Controllers
 
          
 
-            foreach (var book in books)
-            {
-                foreach (var ph in book.PublicHouses)
-                {
-                    ph.Books = null;
-                }
-            }
+            //foreach (var book in books)
+            //{
+            //    foreach (var ph in book.PublicHouses)
+            //    {
+            //        ph.Books = null;
+            //    }
+            //}
 
             // return this.Json(
             //(from obj in books select new { obj.Id, obj.Name, obj.Author, obj.YearOfPublishing} , JsonRequestBehavior.AllowGet)
