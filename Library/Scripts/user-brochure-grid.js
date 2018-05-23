@@ -92,7 +92,7 @@
                                     Id: { type: "number", editable: false },
                                     Name: { validation: { required: true } },
                                     TypeOfCover: { validation: { required: true } },
-                                    NumberOfPages: { type: "number", validation: { required: true } },
+                                    NumberOfPages: { type: "number", validation: { required: true } }
                                 }
                         }
                 }
@@ -105,12 +105,11 @@
 
             pageable: true,
             height: 550,
-            //toolbar: ["create"],
+           
             columns: [
                 { field: "Name", title: "Brochure name" },
                 { field: "TypeOfCover", title: "TypeOfCover" },
                 { field: "NumberOfPages", title: "NumberOfPages" }]
-            //{ command: ["edit", "destroy"], title: "&nbsp;" }],
-            //editable: "popup"
+            
         })
 });

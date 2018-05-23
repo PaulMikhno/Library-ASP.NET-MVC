@@ -13,6 +13,7 @@ using Library.BLL.DTO;
 using Library.BLL.Infrastructure;
 using Library.WEB.Models;
 using ViewEntities.Enums;
+using ViewEntities.Models;
 
 namespace Library.WEB.Controllers
 {
@@ -69,7 +70,7 @@ namespace Library.WEB.Controllers
         public ActionResult Logout()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Books", "Book");
         }
 
         public ActionResult Register()

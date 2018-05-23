@@ -93,8 +93,10 @@
                             fields:
                                 {
                                     Id: { type: "number", editable: false },
+
                                     Name: { validation: { required: true } },
-                                    Address: { validation: { required: true } },
+
+                                    Address: { validation: { required: true } }
 
                                 }
                         }

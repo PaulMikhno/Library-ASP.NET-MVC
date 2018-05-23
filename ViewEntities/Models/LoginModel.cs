@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Library.WEB.Models
+namespace ViewEntities.Models
 {
     public class LoginModel
     {

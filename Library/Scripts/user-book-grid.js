@@ -82,8 +82,8 @@ $(document).ready(function () {
                                     Id: { type: "number", editable: false },
                                     Name: { validation: { required: true } },
                                     Author: { validation: { required: true } },
-                                    YearOfPublishing: { validation: { required: true } },
-                                    //  PublicHouses: { validation: { required: true }, editor: selector }
+                                    YearOfPublishing: { validation: { required: true } }
+                                  
                                 }
                         }
                 }
@@ -100,10 +100,7 @@ $(document).ready(function () {
                 { field: "Name", title: "Book name" },
                 { field: "Author", title: "Author" },
                 { field: "YearOfPublishing", title: "YearOfPublishing" }]
-            // { field: "PublicHouses", title: "Publishing by" },
-
-            // { command: ["edit", "destroy"], title: "&nbsp;" }],
-            //editable: "popup"
+           
         })
 
     function selector(container, options) {
@@ -118,7 +115,7 @@ $(document).ready(function () {
                     }
                 }),
                 dataTextField: "Name",
-                dataValueField: "Id",
+                dataValueField: "Id"
             });
     }
 });

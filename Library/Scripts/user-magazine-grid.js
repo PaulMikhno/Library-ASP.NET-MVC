@@ -94,7 +94,7 @@
                                     Id: { type: "number", editable: false },
                                     Name: { validation: { required: true } },
                                     Number: { validation: { required: true } },
-                                    YearOfPublishing: { validation: { required: true } },
+                                    YearOfPublishing: { validation: { required: true } }
                                 }
                         }
                 }
@@ -107,12 +107,11 @@
 
             pageable: true,
             height: 550,
-            // toolbar: ["create"],
+           
             columns: [
                 { field: "Name", title: "Magazine name" },
                 { field: "Number", title: "Number" },
-                { field: "YearOfPublishing", }]
-            // { command: ["edit", "destroy"], title: "&nbsp;" }],
-            // editable: "popup"
+                { field: "YearOfPublishing" }]
+            
         })
 });

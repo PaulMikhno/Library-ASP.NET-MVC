@@ -83,9 +83,6 @@
     <Compile Include="Entities\ClientProfile.cs" />
     <Compile Include="Enums\Roles.cs" />
     <Compile Include="Enums\TypeOfCover.cs" />
-    <Compile Include="Interfaces\IBookRepository.cs" />
-    <Compile Include="Interfaces\IBrochureRepository.cs" />
-    <Compile Include="Interfaces\IMagazineRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Book.cs" />

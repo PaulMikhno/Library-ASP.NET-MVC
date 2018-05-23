@@ -288,14 +288,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\BrochureController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MagazineController.cs" />
     <Compile Include="Controllers\PublicHouseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -362,20 +359,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Book\Books.cshtml" />
-    <Content Include="Views\Brochure\AddBrochure.cshtml" />
     <Content Include="Views\Brochure\Brochures.cshtml" />
-    <Content Include="Views\Book\AddBook.cshtml" />
-    <Content Include="Views\Magazine\AddMagazine.cshtml" />
-    <Content Include="Views\Magazine\Delete.cshtml" />
-    <Content Include="Views\Magazine\Download.cshtml" />
-    <Content Include="Views\Magazine\EditMagazine.cshtml" />
     <Content Include="Views\Magazine\Magazines.cshtml" />
-    <Content Include="Views\PublicHouse\AddPublicHouse.cshtml" />
-    <Content Include="Views\PublicHouse\Delete.cshtml" />
-    <Content Include="Views\PublicHouse\EditPublicHouse.cshtml" />
     <Content Include="Views\PublicHouse\PublicHouses.cshtml" />
-    <Content Include="Views\Home\AllPublications.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -384,6 +370,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

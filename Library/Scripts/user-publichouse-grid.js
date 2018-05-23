@@ -107,11 +107,10 @@
 
             pageable: true,
             height: 550,
-            // toolbar: ["create"],
+           
             columns: [
                 { field: "Name", title: "Name" },
                 { field: "Address", title: "Address" }]
-            // { command: ["edit", "destroy"], title: "&nbsp;" }],
-            // editable: "popup"
+            
         })
 });

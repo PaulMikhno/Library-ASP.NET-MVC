@@ -28,10 +28,9 @@ namespace Library.DAL.Repositories
         
             var book = books.Find(x => x.Id == item.Id);
 
-            var publicHouses = db.PublicHouses.ToList();
+            var publicHouses = db.PublicHouses.Where(x=>item.PublicHouses.Select(y=>y.Id).ToList().Contains(x.Id)).ToList();
 
             book.PublicHouses.Clear();
-
             book.Name = item.Name;
             book.Author = item.Author;
             book.YearOfPublishing = item.YearOfPublishing;
@@ -40,6 +39,7 @@ namespace Library.DAL.Repositories
             {
                 book.PublicHouses.Add(publicHouses.Find(x => x.Id == publicHouse.Id));
             }
+
             db.Entry(book).State = EntityState.Modified;
 
             db.SaveChanges();
