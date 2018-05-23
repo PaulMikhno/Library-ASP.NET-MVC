@@ -1,4 +1,5 @@
-﻿using Library.Entities.Models;
+﻿using Library.Entities.Interfaces;
+using Library.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,63 +9,46 @@ using System.Threading.Tasks;
 
 namespace Library.DAL.Repositories
 {
-    public class BookRepository 
+    public class BookRepository :GenericRepository<Book>
     {
         private LibraryContext db;
 
         public BookRepository(LibraryContext dbContext)
+            :base(dbContext)
         {
             
             this.db = dbContext;
 
         }
 
-        public void Create(Book item)
+        public override void Update(Book item)
         {
-            db.Books.Add(item);
-            db.SaveChanges();
-        }
 
-        public void Remove(int id)
-        {
-            Book product = db.Books.Find(id);
-            if (product != null)
-            {
-                db.Books.Remove(product);
-                db.SaveChanges();
-
-            }
-        }
+            var books= db.Books.Include(x => x.PublicHouses).ToList();
         
-        public void Update(Book item)
-        {
+            var book = books.Find(x => x.Id == item.Id);
 
-            var book= db.Books.Find(item.Id);
-            var books = Get();
+            var publicHouses = db.PublicHouses.ToList();
 
             book.PublicHouses.Clear();
 
+            book.Name = item.Name;
+            book.Author = item.Author;
+            book.YearOfPublishing = item.YearOfPublishing;
+
             foreach (var publicHouse in item.PublicHouses)
             {
-                book.PublicHouses.Add(db.PublicHouses.Find(publicHouse.Id));
+                book.PublicHouses.Add(publicHouses.Find(x => x.Id == publicHouse.Id));
             }
             db.Entry(book).State = EntityState.Modified;
-            var book2= db.Books.Find(item.Id);
 
             db.SaveChanges();
+
         }
 
-        public IEnumerable<Book> Get()
+        public override IEnumerable<Book> Get()
         {
             return db.Books.Include(x => x.PublicHouses).ToList();
-           // return db.Books.ToList();
         }
-
-        public Book Get(int id)
-        {
-            return db.Books.Find(id);
-        }
-
-
     }
 }

@@ -118,9 +118,6 @@ namespace Library.DAL.Repositories
                     .Select(e => e.Name);
         }
 
-        public IEnumerable<TEntity> Get(Func<TEntity, bool> predicate)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

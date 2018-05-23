@@ -102,11 +102,11 @@ $(document).ready(function () {
                 }
         })
 
-
+    $(".k-window-title")[0].innerHTML = "Add";
+    $(".k-button.k-button-icontext.k-primary.k-grid-update")[0].textContent = "Add";
     $("#grid").kendoGrid
         ({
             dataSource: dataSource,
-
             pageable: true,
             height: 500,
             toolbar: ["create"],

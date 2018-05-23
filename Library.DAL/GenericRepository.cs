@@ -21,12 +21,12 @@ namespace Library.DAL
             dbSet = context.Set<TEntity>();
         }
         
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
             return dbSet.Find(id);
         }
 
-        public IEnumerable<TEntity> Get()
+        public virtual IEnumerable<TEntity> Get()
         {
             return dbSet.ToList();
         }
@@ -37,7 +37,7 @@ namespace Library.DAL
             context.SaveChanges();
         }
 
-        public void Update(TEntity item)
+        public virtual void Update(TEntity item)
         {
             context.Entry(item).State = EntityState.Modified;
             context.SaveChanges();
