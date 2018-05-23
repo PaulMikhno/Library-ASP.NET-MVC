@@ -113,6 +113,13 @@
                 { field: "Name", title: "Name" },
                 { field: "Address", title: "Address" },
                 { command: ["edit", "destroy"], title: "&nbsp;" }],
-            editable: "popup"
+            editable: "popup",
+            edit: function (e) {
+                if (e.model.isNew()) {
+                    $(".k-window-title")[0].innerHTML = "Add publication house";
+                    $(".k-button.k-button-icontext.k-primary.k-grid-update")[0].textContent = "Add";
+                }
+
+            }
         })
 });

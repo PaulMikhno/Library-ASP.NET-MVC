@@ -113,7 +113,14 @@ $(document).ready(function () {
                 { field: "TypeOfCover", title: "TypeOfCover", template: typeOfCover, editor: selector},
                 { field: "NumberOfPages", title: "NumberOfPages" },
                 { command: ["edit", "destroy"], title: "&nbsp;" }],
-            editable: "popup"
+            editable: "popup",
+            edit: function (e) {
+                if (e.model.isNew()) {
+                    $(".k-window-title")[0].innerHTML = "Add brochure";
+                    $(".k-button.k-button-icontext.k-primary.k-grid-update")[0].textContent = "Add";
+                }
+
+            }
         })
     
     function selector(container, options)

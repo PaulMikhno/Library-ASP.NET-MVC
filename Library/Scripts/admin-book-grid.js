@@ -18,7 +18,7 @@ $(document).ready(function () {
                             });
                     },
                     update: function (options) {
-                     
+                       
                         $.ajax(
                             {
                                 url: "/Book/EditBook",
@@ -77,9 +77,6 @@ $(document).ready(function () {
                         if (operation !== "destroy" && options.models) {
                             return { models: kendo.stringify(options.models) };
                         }
-                        //if (operation !== "update" && options.models) {
-                        //    return { models: kendo.stringify(options.models) };
-                        //}
 
                     }
                 },
@@ -102,10 +99,10 @@ $(document).ready(function () {
                 }
         })
 
-    $(".k-window-title")[0].innerHTML = "Add";
-    $(".k-button.k-button-icontext.k-primary.k-grid-update")[0].textContent = "Add";
+   
     $("#grid").kendoGrid
         ({
+           
             dataSource: dataSource,
             pageable: true,
             height: 500,
@@ -120,10 +117,19 @@ $(document).ready(function () {
 
                 { field: "PublicHouses", title: "Publication Houses", template: publicHouses, editor: selector },
 
-                { command: ["edit", "destroy"], title: "&nbsp;" }],
+                { command: ["edit", "destroy"], title: "&nbsp;" }
+            ],
 
-            editable: "popup"
-
+            editable: "popup",
+            edit: function(e)
+            {
+                if (e.model.isNew())
+                {
+                    $(".k-window-title")[0].innerHTML = "Add book";
+                    $(".k-button.k-button-icontext.k-primary.k-grid-update")[0].textContent = "Add";
+                }
+               
+            }
         })
 
     function selector(container, options) {
