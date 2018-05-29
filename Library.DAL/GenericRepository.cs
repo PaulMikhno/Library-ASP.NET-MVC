@@ -31,7 +31,7 @@ namespace Library.DAL
             return dbSet.ToList();
         }
 
-        public void Create(TEntity item)
+        public virtual void Create(TEntity item)
         {
             dbSet.Add(item);
             context.SaveChanges();

@@ -20,7 +20,24 @@ namespace Library.DAL.Repositories
             this.db = dbContext;
 
         }
+        public override void Create(Book item)
+        {
+            var book = new Book
+            {
+                Name = item.Name,
+                Author = item.Author,
+                YearOfPublishing = item.YearOfPublishing
+            };
 
+            var publicHousesIndexes = item.PublicHouses.Select(y => y.Id).ToList();
+
+            var publicHouses = db.PublicHouses.Where(x => publicHousesIndexes.Contains(x.Id)).ToList();
+
+            book.PublicHouses.AddRange(publicHouses);
+
+            db.Books.Add(book);
+            db.SaveChanges();
+        }
         public override void Update(Book item)
         {
 
@@ -28,18 +45,18 @@ namespace Library.DAL.Repositories
         
             var book = books.Find(x => x.Id == item.Id);
 
-            var publicHouses = db.PublicHouses.Where(x=>item.PublicHouses.Select(y=>y.Id).ToList().Contains(x.Id)).ToList();
+            var publicHousesIndexes = item.PublicHouses.Select(y => y.Id).ToList();
+
+            var publicHouses = db.PublicHouses.Where(x=>publicHousesIndexes.Contains(x.Id)).ToList();
+           
 
             book.PublicHouses.Clear();
             book.Name = item.Name;
             book.Author = item.Author;
             book.YearOfPublishing = item.YearOfPublishing;
 
-            foreach (var publicHouse in item.PublicHouses)
-            {
-                book.PublicHouses.Add(publicHouses.Find(x => x.Id == publicHouse.Id));
-            }
-
+            book.PublicHouses.AddRange(publicHouses);
+            
             db.Entry(book).State = EntityState.Modified;
 
             db.SaveChanges();
