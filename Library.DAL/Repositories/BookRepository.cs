@@ -29,12 +29,12 @@ namespace Library.DAL.Repositories
                 YearOfPublishing = item.YearOfPublishing
             };
 
-            var publicHousesIndexes = item.PublicHouses.Select(y => y.Id).ToList();
-
-            var publicHouses = db.PublicHouses.Where(x => publicHousesIndexes.Contains(x.Id)).ToList();
-
-            book.PublicHouses.AddRange(publicHouses);
-
+            var publicHousesIndexes = item.PublicHouses.Where(x => x != null).Select(y => y.Id).ToList();
+            if (publicHousesIndexes != null && publicHousesIndexes.Count != 0)
+            {
+                var publicHouses = db.PublicHouses.Where(x => publicHousesIndexes.Contains(x.Id)).ToList();
+                book.PublicHouses.AddRange(publicHouses);
+            }
             db.Books.Add(book);
             db.SaveChanges();
         }
