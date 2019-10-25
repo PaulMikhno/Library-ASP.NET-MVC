@@ -11,6 +11,7 @@ namespace Test.Library
     public class BookTest
     {
         private const string _connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LibraryDB.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
         [TestInitialize]
         public void Initialize()
         {
@@ -65,6 +66,31 @@ namespace Test.Library
 
                 Assert.IsTrue(result == null);
             }
+        }
+
+        [TestMethod]
+        public void Update_Test()
+        {
+            var bookService = new BookServise(_connectionString);
+
+            bookService.Create(new ViewEntities.Models.BookViewModel { Name = "-Test Update Book-", Author = "Test Author", YearOfPublishing = "1997" });
+
+            var allBooks = bookService.Get().ToList();
+
+            var oldBook = allBooks.FirstOrDefault(x => x.Name == "-Test Update Book-");
+            oldBook.Author = "New Author";
+            oldBook.Name = "-Test Update Book 2-";
+            oldBook.YearOfPublishing = "1234";
+
+            bookService.Update(oldBook);
+
+            var result = bookService.Get(oldBook.Id);
+
+            Assert.IsTrue(result.Author == "New Author");
+            Assert.IsTrue(result.Name == "-Test Update Book 2-");
+            Assert.IsTrue(result.YearOfPublishing == "1234");
+
+            bookService.Remove(oldBook.Id);
         }
     }
 }
